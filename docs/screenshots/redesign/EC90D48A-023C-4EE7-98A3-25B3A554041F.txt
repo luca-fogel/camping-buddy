@@ -1,0 +1,1 @@
+Reference-library preview only. Local MLX generation requires an Apple device, not this simulator.

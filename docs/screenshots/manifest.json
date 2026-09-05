@@ -1,0 +1,17 @@
+[
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "58DBEEC3-2241-42DE-8337-C21220C73286",
+        "deviceName" : "iPhone 17 Pro",
+        "exportedFileName" : "4164B488-0581-4607-81B2-E254C592BA60.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Bundled camping reference_0_95B811FF-B072-41EE-82C2-D356393C07BE.png",
+        "timestamp" : 1788631876.324
+      }
+    ],
+    "testIdentifier" : "CampingBuddyUITests/testOfflineLibraryAndHonestModelState()",
+    "testIdentifierURL" : "test://com.apple.xcode/CampingBuddy/CampingBuddyUITests/CampingBuddyUITests/testOfflineLibraryAndHonestModelState"
+  }
+]

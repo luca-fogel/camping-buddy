@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="620" viewBox="0 0 1600 620" role="img" aria-labelledby="hero-title hero-description">
+  <title id="hero-title">Camping Buddy — A little more ready. A little more outside.</title>
+  <desc id="hero-description">An ivory camping tent beneath an amber sun, surrounded by contour lines on a deep pine background. On-device AI, saved guides, and a native iPhone app.</desc>
+  <defs>
+    <linearGradient id="pine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1B4539"/>
+      <stop offset="1" stop-color="#102D26"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="75%" cy="47%" r="58%">
+      <stop offset="0" stop-color="#46765A" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#46765A" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="banner"><rect width="1600" height="620" rx="28"/></clipPath>
+    <clipPath id="landscape"><rect x="838" width="762" height="620"/></clipPath>
+    <path id="contour" d="M-268-64C-214-176-145-226-30-218C80-212 68-146 158-119C264-86 283-22 239 59C207 119 202 205 105 225C6 244-14 162-113 164C-213 165-325 111-304 33C-296 0-281-30-268-64Z"/>
+  </defs>
+  <g clip-path="url(#banner)">
+    <rect width="1600" height="620" fill="url(#pine)"/>
+    <rect width="1600" height="620" fill="url(#glow)"/>
+    <rect x="0.5" y="0.5" width="1599" height="619" rx="27.5" fill="none" stroke="#DDE6CE" stroke-opacity="0.13"/>
+
+    <g clip-path="url(#landscape)" fill="none" stroke="#A3CEAF" stroke-width="1.2" stroke-opacity="0.17">
+      <use href="#contour" transform="translate(1284 330) scale(1.92)"/>
+      <use href="#contour" transform="translate(1284 330) scale(1.69)"/>
+      <use href="#contour" transform="translate(1284 330) scale(1.46)"/>
+      <use href="#contour" transform="translate(1284 330) scale(1.23)"/>
+      <use href="#contour" transform="translate(1284 330) scale(1.00)"/>
+      <use href="#contour" transform="translate(1284 330) scale(0.77)"/>
+      <use href="#contour" transform="translate(1284 330) scale(0.54)"/>
+    </g>
+
+    <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif">
+      <rect x="90" y="85" width="58" height="58" rx="17" fill="#F1F0D8" fill-opacity="0.08" stroke="#DDE6CE" stroke-opacity="0.16"/>
+      <path d="M103 128L118 102L134 128H126L118 114L110 128Z" fill="#ECECD2"/>
+      <circle cx="134" cy="103" r="4" fill="#D9AE60"/>
+      <text x="169" y="120" font-size="13" font-weight="500" letter-spacing="2.5" fill="#C4D3BD">FOR A WEEKEND OUTSIDE</text>
+
+      <text x="87" y="270" font-size="84" font-weight="650" letter-spacing="-3.3" fill="#F6F4E7">Camping Buddy</text>
+      <text x="91" y="333" font-size="29" font-weight="400" letter-spacing="-0.35" fill="#D2DDC9">A little more ready. A little more outside.</text>
+
+      <g transform="translate(90 420)">
+        <rect width="194" height="43" rx="21.5" fill="#FFFFFF" fill-opacity="0.035" stroke="#C4D3BD" stroke-opacity="0.28"/>
+        <g transform="translate(18 12)" stroke="#D9AE60" stroke-width="1.5" stroke-linecap="round" fill="none">
+          <rect x="3" y="3" width="12" height="12" rx="2"/>
+          <path d="M7 0V3M11 0V3M7 15V18M11 15V18M0 7H3M0 11H3M15 7H18M15 11H18"/>
+        </g>
+        <text x="48" y="28" font-size="16" font-weight="500" fill="#E2E8D6">On-device AI</text>
+      </g>
+      <g transform="translate(302 420)">
+        <rect width="181" height="43" rx="21.5" fill="#FFFFFF" fill-opacity="0.035" stroke="#C4D3BD" stroke-opacity="0.28"/>
+        <g transform="translate(18 12)" stroke="#D9AE60" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <path d="M9 4C6 1 3 1 0 2V15C3 14 6 14 9 17C12 14 15 14 18 15V2C15 1 12 1 9 4ZM9 4V17"/>
+        </g>
+        <text x="48" y="28" font-size="16" font-weight="500" fill="#E2E8D6">Saved guides</text>
+      </g>
+      <g transform="translate(501 420)">
+        <rect width="185" height="43" rx="21.5" fill="#FFFFFF" fill-opacity="0.035" stroke="#C4D3BD" stroke-opacity="0.28"/>
+        <g transform="translate(20 11)" stroke="#D9AE60" stroke-width="1.5" stroke-linecap="round" fill="none">
+          <rect x="2" y="0.5" width="12" height="20" rx="3"/>
+          <path d="M6 3H10M6 18H10"/>
+        </g>
+        <text x="47" y="28" font-size="16" font-weight="500" fill="#E2E8D6">Native iPhone</text>
+      </g>
+    </g>
+
+    <g aria-hidden="true">
+      <circle cx="1375" cy="193" r="45" fill="none" stroke="#D9AE60" stroke-opacity="0.16"/>
+      <circle cx="1375" cy="193" r="29" fill="#D9AE60"/>
+      <path d="M1472 109V121M1466 115H1478" stroke="#D9AE60" stroke-width="1.5" stroke-linecap="round" opacity="0.65"/>
+      <circle cx="1124" cy="148" r="2.4" fill="#CFDCC3" opacity="0.65"/>
+      <circle cx="1489" cy="304" r="2" fill="#CFDCC3" opacity="0.4"/>
+
+      <ellipse cx="1237" cy="468" rx="206" ry="16" fill="#0D271F" fill-opacity="0.45"/>
+      <path d="M980 480C1050 460 1129 464 1204 479C1274 493 1371 484 1462 476" fill="none" stroke="#A7C0A5" stroke-opacity="0.55" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M1175 271L986 472M1330 282L1461 473" fill="none" stroke="#E2E6CB" stroke-opacity="0.45" stroke-width="1.5"/>
+      <path d="M1175 271L1330 282L1422 452H1288Z" fill="#A9BFA4"/>
+      <path d="M1058 452L1175 271L1290 452Z" fill="#ECECD2"/>
+      <path d="M1103 452L1175 338L1246 452Z" fill="#183E32"/>
+      <path d="M1175 271L1290 452" fill="none" stroke="#D8DFC3" stroke-width="2"/>
+      <path d="M1290 452H1422" fill="none" stroke="#799C83" stroke-width="2"/>
+      <path d="M986 470V477M1461 471V478" stroke="#D9AE60" stroke-width="3" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

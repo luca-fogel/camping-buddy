@@ -1,0 +1,16 @@
+.build/
+.derivedData/
+.research/
+.venv/
+Resources/Models/*/
+*.xcuserstate
+xcuserdata/
+.DS_Store
+__pycache__/
+evaluation/runs/
+*.ipa
+*.mobileprovision
+*.p12
+*.p8
+.env
+.env.*

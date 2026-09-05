@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "repository": "mlx-community/gemma-4-E2B-it-4bit",
+  "revision": "238767527555cb75a05732a84dff5d6ba0dd6809",
+  "bundle_path": "Resources/Models/gemma-4-E2B-it-4bit",
+  "upstream_repository": "google/gemma-4-E2B-it",
+  "upstream_revision": "70af34e20bd4b7a91f0de6b22675850c43922a03",
+  "retrieved_at": "2026-09-05",
+  "license": "Apache-2.0",
+  "license_note": "Original Google model card at conversion source revision declares Apache-2.0. Community conversion README says gemma; preserve both cards without altering them. Apache license text is copied verbatim from apache.org and SHA-256 pinned. No model weights modified locally.",
+  "runtime_candidate": "MLX Swift LM 3.31.4 LLMModelFactory local directory; physical-device fit and output quality require validation.",
+  "required_config": {
+    "model_type": "gemma4",
+    "text_config.model_type": "gemma4_text",
+    "text_config.num_hidden_layers": 35,
+    "text_config.num_kv_shared_layers": 20,
+    "quantization.bits": 4,
+    "quantization.group_size": 64,
+    "quantization.mode": "affine"
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://huggingface.co/mlx-community/gemma-4-E2B-it-4bit/resolve/238767527555cb75a05732a84dff5d6ba0dd6809/README.md",
+      "size": 593,
+      "git_blob_sha1": "c322d4d2a2df5113d5ff14d1ab882a5aec97e4f1",
+      "sha256": "9bd9184deee34e15f680922484005dec022a444239b81cc3fc3b226fc9de7a05"
+    },
+    {
+      "path": "chat_template.jinja",
+      "url": "https://huggingface.co/mlx-community/gemma-4-E2B-it-4bit/resolve/238767527555cb75a05732a84dff5d6ba0dd6809/chat_template.jinja",
+      "size": 17336,
+      "git_blob_sha1": "c19999a347da729cf62806a8ddb7eb8e315223b5",
+      "sha256": "2f1b4d75d067bae3fe44e676721c7f077d243bc007156cb9c2f8b5836613d082"
+    },
+    {
+      "path": "config.json",
+      "url": "https://huggingface.co/mlx-community/gemma-4-E2B-it-4bit/resolve/238767527555cb75a05732a84dff5d6ba0dd6809/config.json",
+      "size": 6395,
+      "git_blob_sha1": "1f8a26de63cd505f2fb5c98ad3f08f3e7f47a9de",
+      "sha256": "6397cb6eca41b911d1dcab74e17941351057bd759284052a2331918ff6f9246c"
+    },
+    {
+      "path": "generation_config.json",
+      "url": "https://huggingface.co/mlx-community/gemma-4-E2B-it-4bit/resolve/238767527555cb75a05732a84dff5d6ba0dd6809/generation_config.json",
+      "size": 208,
+      "git_blob_sha1": "e605bb4523b1462ea9d9a3810b9e3ecf7ab7b1f6",
+      "sha256": "d4226bbe3117d2d253ba4609720ba82c6c4ce4627a9a6ae05387c78983ac03de"
+    },
+    {
+      "path": "model.safetensors",
+      "url": "https://huggingface.co/mlx-community/gemma-4-E2B-it-4bit/resolve/238767527555cb75a05732a84dff5d6ba0dd6809/model.safetensors",
+      "size": 3550670554,
+      "git_blob_sha1": "c40a6d545759e4952904cdfb79f3d24b79f39b73",
+      "sha256": "038e39a37a7667373d2c3991375446b10c96ae1d717a68674870343db376b76e"
+    },
+    {
+      "path": "model.safetensors.index.json",
+      "url": "https://huggingface.co/mlx-community/gemma-4-E2B-it-4bit/resolve/238767527555cb75a05732a84dff5d6ba0dd6809/model.safetensors.index.json",
+      "size": 218323,
+      "git_blob_sha1": "b145d4f0cf82ffc8c1f9bef70da4b4083646382d",
+      "sha256": "edb157dbf495e23f37377af4a628a9ad13c4ee7937f93ccb36ec9e9a19940f16"
+    },
+    {
+      "path": "processor_config.json",
+      "url": "https://huggingface.co/mlx-community/gemma-4-E2B-it-4bit/resolve/238767527555cb75a05732a84dff5d6ba0dd6809/processor_config.json",
+      "size": 1316,
+      "git_blob_sha1": "a086fb7e04b477c291a120b0a004abb78b11c6d2",
+      "sha256": "de3e580aebdc98272d4c4547daffe6525fcbae18a83a0e0bcf0d7444d4ee6f37"
+    },
+    {
+      "path": "tokenizer.json",
+      "url": "https://huggingface.co/mlx-community/gemma-4-E2B-it-4bit/resolve/238767527555cb75a05732a84dff5d6ba0dd6809/tokenizer.json",
+      "size": 32169626,
+      "git_blob_sha1": "1ff9f3e3439a939b971f9919e821bf87e835a503",
+      "sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f"
+    },
+    {
+      "path": "tokenizer_config.json",
+      "url": "https://huggingface.co/mlx-community/gemma-4-E2B-it-4bit/resolve/238767527555cb75a05732a84dff5d6ba0dd6809/tokenizer_config.json",
+      "size": 2740,
+      "git_blob_sha1": "cf6235aee46a24bf71f251c0a4e7a0379948f7d2",
+      "sha256": "080d9e1aff284e2f6043889cd05367966f7c7b80e025fbc0b06745e218158656"
+    },
+    {
+      "path": "UPSTREAM-MODEL-CARD.md",
+      "url": "https://huggingface.co/google/gemma-4-E2B-it/resolve/70af34e20bd4b7a91f0de6b22675850c43922a03/README.md",
+      "size": 26744,
+      "sha256": "be82a1570493c695dd2da37dcf80f2c3fca7e7d5bdf25eacebb0acef0c3a3758"
+    },
+    {
+      "path": "LICENSE-APACHE-2.0.txt",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+      "size": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    }
+  ]
+}

@@ -1,0 +1,677 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00ACE74FBADA87CAA164883A /* MLX in Frameworks */ = {isa = PBXBuildFile; productRef = A81C89E60DB80F1E07102A90 /* MLX */; };
+		09771A11502328D043574BCD /* MLXLMCommon in Frameworks */ = {isa = PBXBuildFile; productRef = FD06622F0E97FFC509C6EEE6 /* MLXLMCommon */; };
+		0FF7A161A1308DEEF463DDB3 /* AnswerPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2601D7F0851323E6464AE930 /* AnswerPolicy.swift */; };
+		153AE94385764DE3E291124E /* CampingChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E55A8E432737BB4A0B3DA25 /* CampingChat.swift */; };
+		2346E4911B86272DE77D30BA /* PhysicalModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B582CD206806CC3F83C027 /* PhysicalModelTests.swift */; };
+		2408B325E19E12724B3F695A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DA130ADDB4316578F44787E /* Assets.xcassets */; };
+		341F7BD92105101040D71997 /* AnswerPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2601D7F0851323E6464AE930 /* AnswerPolicy.swift */; };
+		4CB0C54EC2DFE339F66DFB16 /* CampingSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFA88D140E7D8666DC2B2A /* CampingSettings.swift */; };
+		513D835A6060F5B9B340217C /* ReferenceLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4BCC5F66B6E2DDE86E8003 /* ReferenceLibrary.swift */; };
+		57E03F29D35650EC2ED46AF8 /* MLXLMCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 567824CB83B0A59B50C4E234 /* MLXLMCommon */; };
+		59DAB20E17091846468B3454 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BD80BEE1856169E28145AD /* ChatModel.swift */; };
+		5AB44618675C8AE2376A9589 /* MLXLLM in Frameworks */ = {isa = PBXBuildFile; productRef = 39C77FE71E2E50ABC796733A /* MLXLLM */; };
+		5FD1F7EA9A9D035DD2DAC3C9 /* LocalModelEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33F1D16D11C56ADC34508AE /* LocalModelEngine.swift */; };
+		6D592551E510DDF2A1F8E96E /* CampingBuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2C59115BF4F316D4837727 /* CampingBuddyUITests.swift */; };
+		9BADBFF7E251BBB1433E4F30 /* DeviceSmokeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0603033C850306FC22C555 /* DeviceSmokeTest.swift */; };
+		A311053F7364E798B221A9D0 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBE10D67BA4E870D07D1306 /* Run.swift */; };
+		A9688E27D354090FD3DF130C /* CampingHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9EA4BAF387924652440CDF /* CampingHome.swift */; };
+		B06AB91F04394731C0C4D3F2 /* Models in Resources */ = {isa = PBXBuildFile; fileRef = F280699E631E95E8A7987208 /* Models */; };
+		B4017D093F616CA216534AAB /* ReferenceLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4BCC5F66B6E2DDE86E8003 /* ReferenceLibrary.swift */; };
+		B47A984293BCB62F7BD0CEBA /* MLXLLM in Frameworks */ = {isa = PBXBuildFile; productRef = 8AAA6D695361411EB3B31EA9 /* MLXLLM */; };
+		B599B58E999D8CBD3C45B47C /* ReferenceLibrary in Resources */ = {isa = PBXBuildFile; fileRef = AC83CADA26666EBB613F3B31 /* ReferenceLibrary */; };
+		BCC3EB566ABDFB6D88797028 /* FieldLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556BB8C266B05A8C0BB8BB13 /* FieldLibrary.swift */; };
+		CBE4E999299500BDACF70B3E /* Acknowledgments in Resources */ = {isa = PBXBuildFile; fileRef = 89E75775C55E156324041630 /* Acknowledgments */; };
+		D3F2C9B88FAADBB4252E13E9 /* MLX in Frameworks */ = {isa = PBXBuildFile; productRef = 0A63EC0C0111275B81816710 /* MLX */; };
+		E0A34B841D494997E6098F9F /* CampingBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF2AADD32E27E0BCAECDE56 /* CampingBuddyApp.swift */; };
+		E700FFF04F679F0258F02DE1 /* Tokenizers in Frameworks */ = {isa = PBXBuildFile; productRef = C91760B811156DE2475C8332 /* Tokenizers */; };
+		F50690E7DD742F9E427F35DA /* Tokenizers in Frameworks */ = {isa = PBXBuildFile; productRef = 6180E1DE607DCA8509A6E1AA /* Tokenizers */; };
+		F92A34F9E9EF725B738967FE /* CampStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406B140C005036FAD3F7CC3D /* CampStyle.swift */; };
+		FDF484DFEB022472C806AB09 /* LocalModelEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33F1D16D11C56ADC34508AE /* LocalModelEngine.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2E768DF5F396665999FB8612 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 294581D1276A2FA68B327070 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CC25A81388EA11556ADABB71;
+			remoteInfo = CampingBuddy;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0C0603033C850306FC22C555 /* DeviceSmokeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSmokeTest.swift; sourceTree = "<group>"; };
+		17426DCB97C3A46B75649D65 /* CampingModelCheck */ = {isa = PBXFileReference; includeInIndex = 0; path = CampingModelCheck; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D2C59115BF4F316D4837727 /* CampingBuddyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampingBuddyUITests.swift; sourceTree = "<group>"; };
+		1EF2AADD32E27E0BCAECDE56 /* CampingBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampingBuddyApp.swift; sourceTree = "<group>"; };
+		2601D7F0851323E6464AE930 /* AnswerPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerPolicy.swift; sourceTree = "<group>"; };
+		26FFA88D140E7D8666DC2B2A /* CampingSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampingSettings.swift; sourceTree = "<group>"; };
+		406B140C005036FAD3F7CC3D /* CampStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampStyle.swift; sourceTree = "<group>"; };
+		4A4BCC5F66B6E2DDE86E8003 /* ReferenceLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceLibrary.swift; sourceTree = "<group>"; };
+		556BB8C266B05A8C0BB8BB13 /* FieldLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldLibrary.swift; sourceTree = "<group>"; };
+		5DA130ADDB4316578F44787E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		71B582CD206806CC3F83C027 /* PhysicalModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicalModelTests.swift; sourceTree = "<group>"; };
+		89E75775C55E156324041630 /* Acknowledgments */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Acknowledgments; path = Resources/Acknowledgments; sourceTree = SOURCE_ROOT; };
+		8E55A8E432737BB4A0B3DA25 /* CampingChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampingChat.swift; sourceTree = "<group>"; };
+		AC83CADA26666EBB613F3B31 /* ReferenceLibrary */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ReferenceLibrary; path = Resources/ReferenceLibrary; sourceTree = SOURCE_ROOT; };
+		AEA66A78B0CF9A7F549DF129 /* CampingBuddyUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = CampingBuddyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0BD80BEE1856169E28145AD /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		C33F1D16D11C56ADC34508AE /* LocalModelEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalModelEngine.swift; sourceTree = "<group>"; };
+		E97316F0E04B1B374218A9FD /* CampingBuddy.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = CampingBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBBE10D67BA4E870D07D1306 /* Run.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
+		F280699E631E95E8A7987208 /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Models; path = Resources/Models; sourceTree = SOURCE_ROOT; };
+		FC9EA4BAF387924652440CDF /* CampingHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampingHome.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2746B19FB10507E670679972 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B47A984293BCB62F7BD0CEBA /* MLXLLM in Frameworks */,
+				57E03F29D35650EC2ED46AF8 /* MLXLMCommon in Frameworks */,
+				D3F2C9B88FAADBB4252E13E9 /* MLX in Frameworks */,
+				E700FFF04F679F0258F02DE1 /* Tokenizers in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F354CCBF9E212C9150CB4B05 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5AB44618675C8AE2376A9589 /* MLXLLM in Frameworks */,
+				09771A11502328D043574BCD /* MLXLMCommon in Frameworks */,
+				00ACE74FBADA87CAA164883A /* MLX in Frameworks */,
+				F50690E7DD742F9E427F35DA /* Tokenizers in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		24EF7AD24E2725B8825F612E /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				1D2C59115BF4F316D4837727 /* CampingBuddyUITests.swift */,
+				71B582CD206806CC3F83C027 /* PhysicalModelTests.swift */,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
+		5527F9AC617E0DEABFD3FCB3 = {
+			isa = PBXGroup;
+			children = (
+				89E75775C55E156324041630 /* Acknowledgments */,
+				F280699E631E95E8A7987208 /* Models */,
+				AC83CADA26666EBB613F3B31 /* ReferenceLibrary */,
+				BCE6D7301B2F1FE3F98D82B7 /* App */,
+				ADA7FFBB2243B57D056F1F35 /* CLI */,
+				9B0DECDD558A123D8CB972CF /* Core */,
+				24EF7AD24E2725B8825F612E /* UITests */,
+				FD73A05FE35063C3F448371F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9B0DECDD558A123D8CB972CF /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				2601D7F0851323E6464AE930 /* AnswerPolicy.swift */,
+				4A4BCC5F66B6E2DDE86E8003 /* ReferenceLibrary.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		ADA7FFBB2243B57D056F1F35 /* CLI */ = {
+			isa = PBXGroup;
+			children = (
+				EBBE10D67BA4E870D07D1306 /* Run.swift */,
+			);
+			path = CLI;
+			sourceTree = "<group>";
+		};
+		BCE6D7301B2F1FE3F98D82B7 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				5DA130ADDB4316578F44787E /* Assets.xcassets */,
+				1EF2AADD32E27E0BCAECDE56 /* CampingBuddyApp.swift */,
+				8E55A8E432737BB4A0B3DA25 /* CampingChat.swift */,
+				FC9EA4BAF387924652440CDF /* CampingHome.swift */,
+				26FFA88D140E7D8666DC2B2A /* CampingSettings.swift */,
+				406B140C005036FAD3F7CC3D /* CampStyle.swift */,
+				C0BD80BEE1856169E28145AD /* ChatModel.swift */,
+				0C0603033C850306FC22C555 /* DeviceSmokeTest.swift */,
+				556BB8C266B05A8C0BB8BB13 /* FieldLibrary.swift */,
+				C33F1D16D11C56ADC34508AE /* LocalModelEngine.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		FD73A05FE35063C3F448371F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E97316F0E04B1B374218A9FD /* CampingBuddy.app */,
+				AEA66A78B0CF9A7F549DF129 /* CampingBuddyUITests.xctest */,
+				17426DCB97C3A46B75649D65 /* CampingModelCheck */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0E343A82C1B1605AD388E569 /* CampingBuddyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 41BB2A161B05CBB8B59FD783 /* Build configuration list for PBXNativeTarget "CampingBuddyUITests" */;
+			buildPhases = (
+				A10A37D0C22D3AEE77962BC2 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				084CBF656577E1F2FC420BC7 /* PBXTargetDependency */,
+			);
+			name = CampingBuddyUITests;
+			packageProductDependencies = (
+			);
+			productName = CampingBuddyUITests;
+			productReference = AEA66A78B0CF9A7F549DF129 /* CampingBuddyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		CC25A81388EA11556ADABB71 /* CampingBuddy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BBD9935E04F373DC802CFAB5 /* Build configuration list for PBXNativeTarget "CampingBuddy" */;
+			buildPhases = (
+				D05DC61E50D29035ACA72126 /* Sources */,
+				A3783FD3AAC46348D68C4439 /* Resources */,
+				2746B19FB10507E670679972 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CampingBuddy;
+			packageProductDependencies = (
+				8AAA6D695361411EB3B31EA9 /* MLXLLM */,
+				567824CB83B0A59B50C4E234 /* MLXLMCommon */,
+				0A63EC0C0111275B81816710 /* MLX */,
+				C91760B811156DE2475C8332 /* Tokenizers */,
+			);
+			productName = CampingBuddy;
+			productReference = E97316F0E04B1B374218A9FD /* CampingBuddy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EAE57283A2099B12E10ADAFB /* CampingModelCheck */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8BE94659A44706DDA1471735 /* Build configuration list for PBXNativeTarget "CampingModelCheck" */;
+			buildPhases = (
+				D6B8BCD6571801D22B67DC3E /* Sources */,
+				F354CCBF9E212C9150CB4B05 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CampingModelCheck;
+			packageProductDependencies = (
+				39C77FE71E2E50ABC796733A /* MLXLLM */,
+				FD06622F0E97FFC509C6EEE6 /* MLXLMCommon */,
+				A81C89E60DB80F1E07102A90 /* MLX */,
+				6180E1DE607DCA8509A6E1AA /* Tokenizers */,
+			);
+			productName = CampingModelCheck;
+			productReference = 17426DCB97C3A46B75649D65 /* CampingModelCheck */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		294581D1276A2FA68B327070 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					0E343A82C1B1605AD388E569 = {
+						TestTargetID = CC25A81388EA11556ADABB71;
+					};
+				};
+			};
+			buildConfigurationList = 3B512D0ABEB6EEA996477ACE /* Build configuration list for PBXProject "CampingBuddy" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 5527F9AC617E0DEABFD3FCB3;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B0D9574EE2635441AA5F9026 /* XCRemoteSwiftPackageReference "mlx-swift" */,
+				4184EA00F592ECBAEE0AF36C /* XCRemoteSwiftPackageReference "mlx-swift-lm" */,
+				D2EB9E2DA8EFD7FA8303CE2B /* XCRemoteSwiftPackageReference "swift-transformers" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = FD73A05FE35063C3F448371F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CC25A81388EA11556ADABB71 /* CampingBuddy */,
+				0E343A82C1B1605AD388E569 /* CampingBuddyUITests */,
+				EAE57283A2099B12E10ADAFB /* CampingModelCheck */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A3783FD3AAC46348D68C4439 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBE4E999299500BDACF70B3E /* Acknowledgments in Resources */,
+				2408B325E19E12724B3F695A /* Assets.xcassets in Resources */,
+				B06AB91F04394731C0C4D3F2 /* Models in Resources */,
+				B599B58E999D8CBD3C45B47C /* ReferenceLibrary in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A10A37D0C22D3AEE77962BC2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D592551E510DDF2A1F8E96E /* CampingBuddyUITests.swift in Sources */,
+				2346E4911B86272DE77D30BA /* PhysicalModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D05DC61E50D29035ACA72126 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0FF7A161A1308DEEF463DDB3 /* AnswerPolicy.swift in Sources */,
+				F92A34F9E9EF725B738967FE /* CampStyle.swift in Sources */,
+				E0A34B841D494997E6098F9F /* CampingBuddyApp.swift in Sources */,
+				153AE94385764DE3E291124E /* CampingChat.swift in Sources */,
+				A9688E27D354090FD3DF130C /* CampingHome.swift in Sources */,
+				4CB0C54EC2DFE339F66DFB16 /* CampingSettings.swift in Sources */,
+				59DAB20E17091846468B3454 /* ChatModel.swift in Sources */,
+				9BADBFF7E251BBB1433E4F30 /* DeviceSmokeTest.swift in Sources */,
+				BCC3EB566ABDFB6D88797028 /* FieldLibrary.swift in Sources */,
+				5FD1F7EA9A9D035DD2DAC3C9 /* LocalModelEngine.swift in Sources */,
+				513D835A6060F5B9B340217C /* ReferenceLibrary.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6B8BCD6571801D22B67DC3E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				341F7BD92105101040D71997 /* AnswerPolicy.swift in Sources */,
+				FDF484DFEB022472C806AB09 /* LocalModelEngine.swift in Sources */,
+				B4017D093F616CA216534AAB /* ReferenceLibrary.swift in Sources */,
+				A311053F7364E798B221A9D0 /* Run.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		084CBF656577E1F2FC420BC7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CC25A81388EA11556ADABB71 /* CampingBuddy */;
+			targetProxy = 2E768DF5F396665999FB8612 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		34E5EAC38D6CC5C21F5823FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luca.campingbuddy.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CampingBuddy;
+			};
+			name = Release;
+		};
+		3924B6F6D0FD76369A1DD2D1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Camping Buddy";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luca.campingbuddy.prototype;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		49352B6E5C16EAC99D360EB3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luca.campingbuddy.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CampingBuddy;
+			};
+			name = Debug;
+		};
+		64D6C6E05E4C52C5B73DD7AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luca.campingbuddy.CampingModelCheck;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		65B8562A41850E2AEDE92107 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Camping Buddy";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luca.campingbuddy.prototype;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		83331208793DE69FA8D1249E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 2;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.2.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		C62250BB6B2FA979B70D7E40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luca.campingbuddy.CampingModelCheck;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		DBF227A60FB09FD6F1A8F4DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 2;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.2.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3B512D0ABEB6EEA996477ACE /* Build configuration list for PBXProject "CampingBuddy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83331208793DE69FA8D1249E /* Debug */,
+				DBF227A60FB09FD6F1A8F4DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		41BB2A161B05CBB8B59FD783 /* Build configuration list for PBXNativeTarget "CampingBuddyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49352B6E5C16EAC99D360EB3 /* Debug */,
+				34E5EAC38D6CC5C21F5823FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8BE94659A44706DDA1471735 /* Build configuration list for PBXNativeTarget "CampingModelCheck" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64D6C6E05E4C52C5B73DD7AE /* Debug */,
+				C62250BB6B2FA979B70D7E40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BBD9935E04F373DC802CFAB5 /* Build configuration list for PBXNativeTarget "CampingBuddy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65B8562A41850E2AEDE92107 /* Debug */,
+				3924B6F6D0FD76369A1DD2D1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4184EA00F592ECBAEE0AF36C /* XCRemoteSwiftPackageReference "mlx-swift-lm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ml-explore/mlx-swift-lm";
+			requirement = {
+				kind = exactVersion;
+				version = 3.31.4;
+			};
+		};
+		B0D9574EE2635441AA5F9026 /* XCRemoteSwiftPackageReference "mlx-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ml-explore/mlx-swift";
+			requirement = {
+				kind = exactVersion;
+				version = 0.31.4;
+			};
+		};
+		D2EB9E2DA8EFD7FA8303CE2B /* XCRemoteSwiftPackageReference "swift-transformers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/huggingface/swift-transformers";
+			requirement = {
+				kind = exactVersion;
+				version = 1.3.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0A63EC0C0111275B81816710 /* MLX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B0D9574EE2635441AA5F9026 /* XCRemoteSwiftPackageReference "mlx-swift" */;
+			productName = MLX;
+		};
+		39C77FE71E2E50ABC796733A /* MLXLLM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4184EA00F592ECBAEE0AF36C /* XCRemoteSwiftPackageReference "mlx-swift-lm" */;
+			productName = MLXLLM;
+		};
+		567824CB83B0A59B50C4E234 /* MLXLMCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4184EA00F592ECBAEE0AF36C /* XCRemoteSwiftPackageReference "mlx-swift-lm" */;
+			productName = MLXLMCommon;
+		};
+		6180E1DE607DCA8509A6E1AA /* Tokenizers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D2EB9E2DA8EFD7FA8303CE2B /* XCRemoteSwiftPackageReference "swift-transformers" */;
+			productName = Tokenizers;
+		};
+		8AAA6D695361411EB3B31EA9 /* MLXLLM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4184EA00F592ECBAEE0AF36C /* XCRemoteSwiftPackageReference "mlx-swift-lm" */;
+			productName = MLXLLM;
+		};
+		A81C89E60DB80F1E07102A90 /* MLX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B0D9574EE2635441AA5F9026 /* XCRemoteSwiftPackageReference "mlx-swift" */;
+			productName = MLX;
+		};
+		C91760B811156DE2475C8332 /* Tokenizers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D2EB9E2DA8EFD7FA8303CE2B /* XCRemoteSwiftPackageReference "swift-transformers" */;
+			productName = Tokenizers;
+		};
+		FD06622F0E97FFC509C6EEE6 /* MLXLMCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4184EA00F592ECBAEE0AF36C /* XCRemoteSwiftPackageReference "mlx-swift-lm" */;
+			productName = MLXLMCommon;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 294581D1276A2FA68B327070 /* Project object */;
+}

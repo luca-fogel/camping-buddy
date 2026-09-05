@@ -1,0 +1,33 @@
+# Keep these checks runnable locally. The Swift package contains only the
+# reference/retrieval core; model download and iPhone/GPU builds are separate.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Public repository and Swift core
+    runs-on: macos-latest
+    timeout-minutes: 15
+    steps:
+      # actions/checkout v4.4.0, verified against its official release commit.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Toolchain
+        run: swift --version
+      - name: Check public files and local documentation links
+        run: python3 scripts/check_public_repo.py
+      - name: Test the Swift 6 core package
+        run: swift test --scratch-path .build/ci-core

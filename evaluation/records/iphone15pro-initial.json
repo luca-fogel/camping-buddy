@@ -1,0 +1,51 @@
+{
+  "answer" : "*   Pack your tent, sleeping pad, and sleeping bag for the location and season [sleep-system].\n*   Select bedding based on the conditions and your personal needs [sleep-system].\n*   Keep dry clothes for when you go to sleep [sleep-system].\n*   Check local rules before using a hammock or shelter tied to trees [sleep-system].",
+  "connectivityChangedByTest" : false,
+  "detail" : "The visible app accepted a real local model answer and its source references.",
+  "deviceModel" : "iPhone",
+  "displayedMessage" : "*   Pack your tent, sleeping pad, and sleeping bag for the location and season [sleep-system].\n*   Select bedding based on the conditions and your personal needs [sleep-system].\n*   Keep dry clothes for when you go to sleep [sleep-system].\n*   Check local rules before using a hammock or shelter tied to trees [sleep-system].",
+  "generatedAnswer" : true,
+  "metrics" : "Load 2.55 s · first text 3.30 s · answer 6.42 s · 77 generated tokens, finished at a stop token · MLX allocator peak 2580 MiB (process lifetime; not total app memory).",
+  "modelGenerating" : false,
+  "modelLoading" : false,
+  "modelReady" : true,
+  "modelStatus" : "Gemma 4 E2B ready · local files only",
+  "offlineVerified" : false,
+  "question" : "What sleeping gear should I pack?",
+  "recordedAt" : "2026-09-05T18:52:53Z",
+  "runID" : "52A112CE-1B9E-402B-BBFC-0778F5D24448",
+  "simulator" : false,
+  "sources" : [
+    {
+      "accessedDate" : "2026-09-05",
+      "id" : "sleep-system",
+      "keywords" : [
+        "sleep",
+        "sleeping",
+        "tent",
+        "pad",
+        "bag",
+        "bedding",
+        "shelter",
+        "hammock",
+        "cold",
+        "dry",
+        "capacity",
+        "gear",
+        "packing"
+      ],
+      "region" : "Initial audience: English-speaking beginner weekend campers in the northeastern US. Source context: general United States guidance, not park-specific.",
+      "reviewStatus" : "Development seed; not expert-reviewed.",
+      "rights" : "Original development paraphrase grounded in linked NPS guidance; not an NPS-authored passage. No claim to original U.S. Government works. No images or third-party excerpts included.",
+      "sourceTitle" : "What to Bring — National Park Service",
+      "sourceURL" : "https:\/\/www.nps.gov\/subjects\/camping\/what-to-bring.htm",
+      "text" : "Plan for a tent, sleeping pad, and sleeping bag suited to the location and season. A tent’s stated capacity describes sleeping space; account separately for gear or pets. Choose bedding for the conditions and your own needs, and keep dry clothes for bedtime. Check local rules before relying on a hammock or shelter tied to trees.",
+      "title" : "Pack shelter and bedding together"
+    }
+  ],
+  "startedAt" : "2026-09-05T18:52:44Z",
+  "status" : "passed",
+  "systemName" : "iOS",
+  "systemVersion" : "26.6.1",
+  "testContext" : "Development smoke test launched from a connected Mac. Networking was not disabled for this check. The app does not measure Mac connection or radio state. This is not the Mac-off, cold-launch offline acceptance test."
+}
