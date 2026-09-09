@@ -1,5 +1,7 @@
 # Validation record · 2026-09-05
 
+> **This record concerns a model the app no longer ships.** On 2026-09-09 the app was cut down to a single model, Bonsai 27B (MLX 1-bit), replacing the Gemma 4 E2B baseline and the four-model library around it. Everything below was measured with Gemma 4 E2B and is kept as history. **None of it is evidence about Bonsai 27B**, which has not been loaded on a phone. See [MODEL.md](MODEL.md) and [MODEL_CATALOG.md](MODEL_CATALOG.md).
+
 **Signed iPhone installation and real connected-phone generation passed; independent Mac-off acceptance remains pending.** This is a development prototype, not validated field guidance. No camping fine-tune or custom-weight export has run.
 
 ## Verified results
@@ -16,7 +18,7 @@
 | Visual QA | Ask, guide reader, Settings, light/dark, and larger text inspected; keyboard restoration and primary-button contrast fixed | Full VoiceOver audit and broader device-size coverage pending |
 | Real inference | Ten-case Mac run completed with OS sandbox `(deny network*)` | Physical cold launch with Mac off remains untested |
 
-Direct pins: MLX Swift LM **3.31.4**, MLX Swift **0.31.4**, Swift Transformers **1.3.4**. All 12 package revisions are in Xcode's Package.resolved. Model snapshot: `238767527555cb75a05732a84dff5d6ba0dd6809`, ordinary MLX 4-bit Gemma 4 E2B IT, distinct from Google's mobile QAT artifact.
+Direct pins at the time of this record: MLX Swift LM **3.31.4**, MLX Swift **0.31.4**, Swift Transformers **1.3.4**. The runtime pins are unchanged today; the LiteRT-LM dependency has since been removed with the Gemma Mobile entry. Model snapshot for the results below: `238767527555cb75a05732a84dff5d6ba0dd6809`, ordinary MLX 4-bit Gemma 4 E2B IT — **not** the currently shipped model.
 
 ## Final real Mac run
 
@@ -84,3 +86,17 @@ The updated signed app was installed on the same iPhone. [The actual cold app-se
 This was a fresh app session with the Mac connected; system/file caches may be warm. It does not establish disabled-radio operation, total memory, battery/heat behavior, or field safety. `offlineVerified` remains false. The final welcome-caption/placeholder-only adjustment followed this inference check without changing request or model code.
 
 Screenshots: [light Ask](screenshots/redesign/ask-light.png), [dark Ask](screenshots/redesign/ask-dark.png), and full test attachments in `screenshots/redesign/manifest.json`. Build products and new machine-local raw runs are ignored by Git. The reviewed records linked above are retained under `evaluation/records` for the documented results.
+
+## Model-manager regression checks
+
+The model-manager change passed **19 core tests** and the coordinator harness. These cover catalog and storage rules, transfer recovery, cancellation, model switching, and restoration using controlled test dependencies; they do not prove that every catalog checkpoint runs on an iPhone. The existing four simulator UI checks passed. The new Models test then passed in `.build/model-manager-ui-accessible.xcresult`, covering search, model details, Settings access, and the Downloaded filter across **light, dark, and light with accessibility text size**. The large-text setting is explicitly propagated into presented sheets, and the test checks that it reaches the model sheet. These are interface checks without generated-answer fixtures or simulator inference.
+
+[The new actual Mac record](../evaluation/records/mac-model-manager.jsonl) is an exact copy of `mac-offline-20260905-175524.jsonl`, reviewed for public-safe content. It ran the shared engine with networking denied by `scripts/no-network.sb`, Gemma 4 E2B, temperature 0, and thinking disabled:
+
+- **Six ordinary questions** produced stop-token-complete answers that passed citation-identity checks.
+- **Three questions** used deterministic routing: current conditions, unsupported mushroom identification, and an explicit override request.
+- **One invented-citation request** produced an uncited model abstention, which was withheld by the citation check.
+
+Load was **1.90 seconds**; displayed answers took **1.00–2.49 seconds**, with internal first text at **0.29–0.83 seconds**. Peak MLX allocator usage was **2,712 MiB**, process lifetime, excluding other app memory. These are Mac measurements and may benefit from caches.
+
+Valid citation IDs do not establish complete or accurate advice. The new storage answer still includes an overbroad car/container statement, and some other answers omit source details; the quality limits above remain. This ten-case development regression does not establish broad injection resistance, field safety, or quality across the 20-model catalog. Connected-phone model download/switch verification and the independent radios-off/Mac-off acceptance gate remain separate from this Mac and simulator evidence. Earlier records are retained unchanged.

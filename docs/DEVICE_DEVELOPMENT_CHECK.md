@@ -25,3 +25,20 @@ xcrun devicectl device copy from --device YOUR_DEVICE_ID --domain-type appDataCo
 Require `status: passed`, `generatedAnswer: true`, and `simulator: false`. Review the actual answer and source texts too. The report explicitly does not claim disabled radios, Mac-off operation, cold independent launch, total process memory, battery, heat, or expert-validated advice. MLX peak is allocator memory only.
 
 An optional XCTest version exists in UITests/PhysicalModelTests.swift, but deploying its separate test runner may require a further free-profile app slot. It has been typechecked; do not label it passed until actually run on a device. The in-app check avoids that additional slot.
+
+## Model download and switching check (version 0.3)
+
+Use this separate opt-in flag while the phone has internet access:
+
+```sh
+xcrun devicectl device process launch --device YOUR_DEVICE_ID --terminate-existing com.luca.campingbuddy.prototype --camping-model-manager-smoke
+xcrun devicectl device copy from --device YOUR_DEVICE_ID --domain-type appDataContainer --domain-identifier com.luca.campingbuddy.prototype --source Documents/ModelManagerSmokeTest.json --destination evaluation/runs/model-manager-smoke.json
+```
+
+This downloads the pinned Bonsai 27B model (5,159,412,937 bytes), using the app's actual download manager. If a verified copy already exists, the report explicitly records reuse. It loads the model, asks the saved sleeping-gear question, checks that an invalid selection is rejected and that the in-use model cannot be deleted, then begins another real request and cancels it. The actual output, completion, citation acceptance, identity, revision, and measurements are recorded. The final report also records app version/build.
+
+This is a 4.81 GiB transfer over the phone's own connection, and Bonsai 27B has never been loaded on this project's iPhone. Expect the load, not the download, to be the step that fails first if memory is short; a jetsam kill ends the process without writing a report, which is itself the result.
+
+The download has a 600-second deadline; loading and answering have 120-second limits. A 4.81 GiB download may well exceed 600 seconds on a slow connection — that is a deadline failure, not a model failure. Cancellation joins the ongoing operation before the failure report is written. A source-check failure still allows the cancellation sequence to run and is retained as a failed result. Overall `status: passed` requires the completed, accepted answer with matching identity/revision plus the cancellation and protection checks. Review the actual advice separately: passing citation identity checks does not establish that every recommendation is supported.
+
+This test needs networking for the download and leaves `offlineVerified` false. It does not change phone radios or establish independent operation with the Mac off. It installs no additional app and does not bulk-download the catalog.

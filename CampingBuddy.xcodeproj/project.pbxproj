@@ -14,17 +14,22 @@
 		2346E4911B86272DE77D30BA /* PhysicalModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B582CD206806CC3F83C027 /* PhysicalModelTests.swift */; };
 		2408B325E19E12724B3F695A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DA130ADDB4316578F44787E /* Assets.xcassets */; };
 		341F7BD92105101040D71997 /* AnswerPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2601D7F0851323E6464AE930 /* AnswerPolicy.swift */; };
+		44E7BC575E079D5A447BC295 /* ModelLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31082CDD0FC88447BFC7DA8A /* ModelLibrary.swift */; };
 		4CB0C54EC2DFE339F66DFB16 /* CampingSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFA88D140E7D8666DC2B2A /* CampingSettings.swift */; };
+		4E6E41C827B5D804C349A6A3 /* ModelDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E76C41FBC891960DA14B8C /* ModelDownloader.swift */; };
 		513D835A6060F5B9B340217C /* ReferenceLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4BCC5F66B6E2DDE86E8003 /* ReferenceLibrary.swift */; };
+		57DCEC64BCC3C91B1EEA4602 /* ModelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394C585C02D15F445444050D /* ModelsView.swift */; };
 		57E03F29D35650EC2ED46AF8 /* MLXLMCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 567824CB83B0A59B50C4E234 /* MLXLMCommon */; };
 		59DAB20E17091846468B3454 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BD80BEE1856169E28145AD /* ChatModel.swift */; };
 		5AB44618675C8AE2376A9589 /* MLXLLM in Frameworks */ = {isa = PBXBuildFile; productRef = 39C77FE71E2E50ABC796733A /* MLXLLM */; };
 		5FD1F7EA9A9D035DD2DAC3C9 /* LocalModelEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33F1D16D11C56ADC34508AE /* LocalModelEngine.swift */; };
+		6CDCE11D0C27309A54F12E71 /* ModelCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD23390352A213A74A626467 /* ModelCatalog.swift */; };
 		6D592551E510DDF2A1F8E96E /* CampingBuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2C59115BF4F316D4837727 /* CampingBuddyUITests.swift */; };
+		6F7F09457D8F5733A3672F8C /* CampingModelEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BDDC132F88FEF7F3CF35F7 /* CampingModelEngine.swift */; };
 		9BADBFF7E251BBB1433E4F30 /* DeviceSmokeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0603033C850306FC22C555 /* DeviceSmokeTest.swift */; };
 		A311053F7364E798B221A9D0 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBE10D67BA4E870D07D1306 /* Run.swift */; };
 		A9688E27D354090FD3DF130C /* CampingHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9EA4BAF387924652440CDF /* CampingHome.swift */; };
-		B06AB91F04394731C0C4D3F2 /* Models in Resources */ = {isa = PBXBuildFile; fileRef = F280699E631E95E8A7987208 /* Models */; };
+		AE06062177F546A7DB98F2E7 /* ModelCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD23390352A213A74A626467 /* ModelCatalog.swift */; };
 		B4017D093F616CA216534AAB /* ReferenceLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4BCC5F66B6E2DDE86E8003 /* ReferenceLibrary.swift */; };
 		B47A984293BCB62F7BD0CEBA /* MLXLLM in Frameworks */ = {isa = PBXBuildFile; productRef = 8AAA6D695361411EB3B31EA9 /* MLXLLM */; };
 		B599B58E999D8CBD3C45B47C /* ReferenceLibrary in Resources */ = {isa = PBXBuildFile; fileRef = AC83CADA26666EBB613F3B31 /* ReferenceLibrary */; };
@@ -33,8 +38,12 @@
 		D3F2C9B88FAADBB4252E13E9 /* MLX in Frameworks */ = {isa = PBXBuildFile; productRef = 0A63EC0C0111275B81816710 /* MLX */; };
 		E0A34B841D494997E6098F9F /* CampingBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF2AADD32E27E0BCAECDE56 /* CampingBuddyApp.swift */; };
 		E700FFF04F679F0258F02DE1 /* Tokenizers in Frameworks */ = {isa = PBXBuildFile; productRef = C91760B811156DE2475C8332 /* Tokenizers */; };
+		E990429EE699785916B50B33 /* ModelStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF52F1617DC778CA6FCEFC2 /* ModelStorage.swift */; };
 		F50690E7DD742F9E427F35DA /* Tokenizers in Frameworks */ = {isa = PBXBuildFile; productRef = 6180E1DE607DCA8509A6E1AA /* Tokenizers */; };
+		F8ECEB3EDE957776FEE813FA /* ModelDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E76C41FBC891960DA14B8C /* ModelDownloader.swift */; };
 		F92A34F9E9EF725B738967FE /* CampStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406B140C005036FAD3F7CC3D /* CampStyle.swift */; };
+		FAA7E249750DFAC1022FFF25 /* ModelCatalog in Resources */ = {isa = PBXBuildFile; fileRef = B540D8FF80951F1DEFB49295 /* ModelCatalog */; };
+		FB09BEB474F3DCF93941BF5F /* ModelStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF52F1617DC778CA6FCEFC2 /* ModelStorage.swift */; };
 		FDF484DFEB022472C806AB09 /* LocalModelEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33F1D16D11C56ADC34508AE /* LocalModelEngine.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,21 +63,27 @@
 		1D2C59115BF4F316D4837727 /* CampingBuddyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampingBuddyUITests.swift; sourceTree = "<group>"; };
 		1EF2AADD32E27E0BCAECDE56 /* CampingBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampingBuddyApp.swift; sourceTree = "<group>"; };
 		2601D7F0851323E6464AE930 /* AnswerPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerPolicy.swift; sourceTree = "<group>"; };
+		26E76C41FBC891960DA14B8C /* ModelDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDownloader.swift; sourceTree = "<group>"; };
 		26FFA88D140E7D8666DC2B2A /* CampingSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampingSettings.swift; sourceTree = "<group>"; };
+		2CF52F1617DC778CA6FCEFC2 /* ModelStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelStorage.swift; sourceTree = "<group>"; };
+		31082CDD0FC88447BFC7DA8A /* ModelLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLibrary.swift; sourceTree = "<group>"; };
+		394C585C02D15F445444050D /* ModelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsView.swift; sourceTree = "<group>"; };
 		406B140C005036FAD3F7CC3D /* CampStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampStyle.swift; sourceTree = "<group>"; };
 		4A4BCC5F66B6E2DDE86E8003 /* ReferenceLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceLibrary.swift; sourceTree = "<group>"; };
 		556BB8C266B05A8C0BB8BB13 /* FieldLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldLibrary.swift; sourceTree = "<group>"; };
 		5DA130ADDB4316578F44787E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		61BDDC132F88FEF7F3CF35F7 /* CampingModelEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampingModelEngine.swift; sourceTree = "<group>"; };
 		71B582CD206806CC3F83C027 /* PhysicalModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicalModelTests.swift; sourceTree = "<group>"; };
 		89E75775C55E156324041630 /* Acknowledgments */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Acknowledgments; path = Resources/Acknowledgments; sourceTree = SOURCE_ROOT; };
 		8E55A8E432737BB4A0B3DA25 /* CampingChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampingChat.swift; sourceTree = "<group>"; };
 		AC83CADA26666EBB613F3B31 /* ReferenceLibrary */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ReferenceLibrary; path = Resources/ReferenceLibrary; sourceTree = SOURCE_ROOT; };
 		AEA66A78B0CF9A7F549DF129 /* CampingBuddyUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = CampingBuddyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B540D8FF80951F1DEFB49295 /* ModelCatalog */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ModelCatalog; path = Resources/ModelCatalog; sourceTree = SOURCE_ROOT; };
+		BD23390352A213A74A626467 /* ModelCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCatalog.swift; sourceTree = "<group>"; };
 		C0BD80BEE1856169E28145AD /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		C33F1D16D11C56ADC34508AE /* LocalModelEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalModelEngine.swift; sourceTree = "<group>"; };
 		E97316F0E04B1B374218A9FD /* CampingBuddy.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = CampingBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBBE10D67BA4E870D07D1306 /* Run.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
-		F280699E631E95E8A7987208 /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Models; path = Resources/Models; sourceTree = SOURCE_ROOT; };
 		FC9EA4BAF387924652440CDF /* CampingHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampingHome.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,7 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				89E75775C55E156324041630 /* Acknowledgments */,
-				F280699E631E95E8A7987208 /* Models */,
+				B540D8FF80951F1DEFB49295 /* ModelCatalog */,
 				AC83CADA26666EBB613F3B31 /* ReferenceLibrary */,
 				BCE6D7301B2F1FE3F98D82B7 /* App */,
 				ADA7FFBB2243B57D056F1F35 /* CLI */,
@@ -125,6 +140,9 @@
 			isa = PBXGroup;
 			children = (
 				2601D7F0851323E6464AE930 /* AnswerPolicy.swift */,
+				BD23390352A213A74A626467 /* ModelCatalog.swift */,
+				26E76C41FBC891960DA14B8C /* ModelDownloader.swift */,
+				2CF52F1617DC778CA6FCEFC2 /* ModelStorage.swift */,
 				4A4BCC5F66B6E2DDE86E8003 /* ReferenceLibrary.swift */,
 			);
 			path = Core;
@@ -145,12 +163,15 @@
 				1EF2AADD32E27E0BCAECDE56 /* CampingBuddyApp.swift */,
 				8E55A8E432737BB4A0B3DA25 /* CampingChat.swift */,
 				FC9EA4BAF387924652440CDF /* CampingHome.swift */,
+				61BDDC132F88FEF7F3CF35F7 /* CampingModelEngine.swift */,
 				26FFA88D140E7D8666DC2B2A /* CampingSettings.swift */,
 				406B140C005036FAD3F7CC3D /* CampStyle.swift */,
 				C0BD80BEE1856169E28145AD /* ChatModel.swift */,
 				0C0603033C850306FC22C555 /* DeviceSmokeTest.swift */,
 				556BB8C266B05A8C0BB8BB13 /* FieldLibrary.swift */,
 				C33F1D16D11C56ADC34508AE /* LocalModelEngine.swift */,
+				31082CDD0FC88447BFC7DA8A /* ModelLibrary.swift */,
+				394C585C02D15F445444050D /* ModelsView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -278,7 +299,7 @@
 			files = (
 				CBE4E999299500BDACF70B3E /* Acknowledgments in Resources */,
 				2408B325E19E12724B3F695A /* Assets.xcassets in Resources */,
-				B06AB91F04394731C0C4D3F2 /* Models in Resources */,
+				FAA7E249750DFAC1022FFF25 /* ModelCatalog in Resources */,
 				B599B58E999D8CBD3C45B47C /* ReferenceLibrary in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,11 +325,17 @@
 				E0A34B841D494997E6098F9F /* CampingBuddyApp.swift in Sources */,
 				153AE94385764DE3E291124E /* CampingChat.swift in Sources */,
 				A9688E27D354090FD3DF130C /* CampingHome.swift in Sources */,
+				6F7F09457D8F5733A3672F8C /* CampingModelEngine.swift in Sources */,
 				4CB0C54EC2DFE339F66DFB16 /* CampingSettings.swift in Sources */,
 				59DAB20E17091846468B3454 /* ChatModel.swift in Sources */,
 				9BADBFF7E251BBB1433E4F30 /* DeviceSmokeTest.swift in Sources */,
 				BCC3EB566ABDFB6D88797028 /* FieldLibrary.swift in Sources */,
 				5FD1F7EA9A9D035DD2DAC3C9 /* LocalModelEngine.swift in Sources */,
+				6CDCE11D0C27309A54F12E71 /* ModelCatalog.swift in Sources */,
+				F8ECEB3EDE957776FEE813FA /* ModelDownloader.swift in Sources */,
+				44E7BC575E079D5A447BC295 /* ModelLibrary.swift in Sources */,
+				FB09BEB474F3DCF93941BF5F /* ModelStorage.swift in Sources */,
+				57DCEC64BCC3C91B1EEA4602 /* ModelsView.swift in Sources */,
 				513D835A6060F5B9B340217C /* ReferenceLibrary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,6 +346,9 @@
 			files = (
 				341F7BD92105101040D71997 /* AnswerPolicy.swift in Sources */,
 				FDF484DFEB022472C806AB09 /* LocalModelEngine.swift in Sources */,
+				AE06062177F546A7DB98F2E7 /* ModelCatalog.swift in Sources */,
+				4E6E41C827B5D804C349A6A3 /* ModelDownloader.swift in Sources */,
+				E990429EE699785916B50B33 /* ModelStorage.swift in Sources */,
 				B4017D093F616CA216534AAB /* ReferenceLibrary.swift in Sources */,
 				A311053F7364E798B221A9D0 /* Run.swift in Sources */,
 			);
@@ -356,6 +386,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Resources/Entitlements/CampingBuddy.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Camping Buddy";
@@ -407,6 +438,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Resources/Entitlements/CampingBuddy.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Camping Buddy";
@@ -458,7 +490,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -478,7 +510,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.4.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -537,7 +569,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -551,7 +583,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.4.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";

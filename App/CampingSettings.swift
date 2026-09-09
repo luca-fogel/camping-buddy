@@ -2,6 +2,8 @@ import SwiftUI
 
 struct CampingSettings: View {
     @ObservedObject var model: ChatModel
+    @ObservedObject var modelLibrary: ModelLibrary
+    var openModels: () -> Void
     @AppStorage("appearance") private var appearance = "system"
 
     var body: some View {
@@ -12,8 +14,8 @@ struct CampingSettings: View {
                         HStack(spacing: 13) {
                             CampMark(size: 50)
                             VStack(alignment: .leading, spacing: 5) {
-                                Text("Gemma 4 E2B").font(.title3.weight(.semibold))
-                                Label("Saved on this iPhone", systemImage: "internaldrive")
+                                Text(model.selectedModelName).font(.title3.weight(.semibold))
+                                Label("Runs on this iPhone", systemImage: "iphone")
                                     .font(.caption).foregroundStyle(CampStyle.secondary)
                             }
                         }
@@ -36,6 +38,14 @@ struct CampingSettings: View {
                         }
                         Text(model.status).font(.caption).foregroundStyle(CampStyle.secondary)
                             .accessibilityIdentifier("modelStatus")
+                        Button(action: openModels) {
+                            HStack {
+                                Label("Manage the model", systemImage: "square.stack.3d.up")
+                                Spacer()
+                                Image(systemName: "chevron.right").font(.caption.weight(.semibold))
+                            }.font(.subheadline.weight(.medium)).padding(.vertical, 8)
+                                .frame(minHeight: 44)
+                        }.accessibilityIdentifier("manageModels")
                     }.campCard()
                     VStack(alignment: .leading, spacing: 14) {
                         Label("Appearance", systemImage: "circle.lefthalf.filled").font(.subheadline.weight(.medium))
@@ -46,7 +56,7 @@ struct CampingSettings: View {
                         }.pickerStyle(.segmented).accessibilityIdentifier("appearancePicker")
                     }.campCard()
                     VStack(alignment: .leading, spacing: 18) {
-                        info("Private by design", text: "Answers run on your iPhone. No account, cloud service, or connection is needed.", icon: "lock.shield")
+                        info("Answers stay on your iPhone", text: "The model and the saved guides answer locally. Downloading the model and opening external links need internet.", icon: "lock.shield")
                         Divider()
                         info("A fresh start each time", text: "Each question is independent. Your conversation stays in memory and clears when the app closes.", icon: "bubble.left")
                     }.campCard()
@@ -97,7 +107,7 @@ private struct AboutCamping: View {
                 Text("The eight saved guides are original summaries based on National Park Service sources. This development library has not been reviewed by an expert.")
                 Text("AI answers can make mistakes. References show which saved guides were used; they do not guarantee that an answer interpreted them correctly.")
                 Text("Check weather, closures, permits, and fire rules with your destination before leaving. Camping Buddy cannot provide live conditions, medical diagnosis, or edible-plant identification.")
-                Text("Version 0.2 · Development preview").font(.caption).foregroundStyle(CampStyle.secondary)
+                Text("Version 0.3 · Development preview").font(.caption).foregroundStyle(CampStyle.secondary)
             }.lineSpacing(4).padding(24)
         }.foregroundStyle(CampStyle.ink).background(CampStyle.background)
             .navigationTitle("About").navigationBarTitleDisplayMode(.inline)
@@ -109,10 +119,8 @@ private struct ModelDiagnostics: View {
     var body: some View {
         List {
             Section("On this device") {
-                LabeledContent("Model", value: "Gemma 4 E2B IT")
-                LabeledContent("Format", value: "MLX · 4-bit")
-                LabeledContent("Bundled files", value: "3.58 GB")
-                Text("Standard MLX affine quantization. This is distinct from Google's LiteRT mobile QAT artifact.").font(.caption).foregroundStyle(.secondary)
+                LabeledContent("Model", value: model.selectedModelName)
+                Text("Open Manage the model for its size, source, and license. The model downloads to your phone and runs there.").font(.caption).foregroundStyle(.secondary)
             }
             Section("Current session") {
                 Text(model.status)
@@ -127,10 +135,8 @@ private struct NoticesView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                Text("Gemma 4 by Google DeepMind · MLX conversion by MLX Community").font(.headline)
-                Text("Model snapshot: 238767527555cb75a05732a84dff5d6ba0dd6809. Standard MLX 4-bit; distinct from the LiteRT mobile QAT artifact.")
-                Text("The original Google model card declares Apache 2.0. The conversion card has an inconsistent Gemma license label; both original cards and the full license are included in this build.")
-                Text(localText("LICENSE-APACHE-2.0", directory: "Models/gemma-4-E2B-it-4bit"))
+                Text("On-device models").font(.headline)
+                Text("Bonsai runs through MLX. The downloaded files retain the publisher’s attribution and license, shown under Manage the model.")
                 Text(localText("ThirdPartyNotices", directory: "Acknowledgments"))
             }.font(.caption).textSelection(.enabled).padding(24)
         }.background(CampStyle.background).navigationTitle("Acknowledgments").navigationBarTitleDisplayMode(.inline)

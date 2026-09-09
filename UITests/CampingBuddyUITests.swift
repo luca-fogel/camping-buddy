@@ -150,6 +150,48 @@ final class CampingBuddyUITests: XCTestCase {
     }
 
     @MainActor
+    func testModelDetailsAndSettingsAccess() throws {
+        #if !DEBUG
+        throw XCTSkip("Visual launch overrides are available in Debug builds only.")
+        #else
+        continueAfterFailure = false
+        for (appearance, largeText) in [("light", false), ("dark", false), ("light", true)] {
+            let app = launch(appearance: appearance, largeText: largeText)
+            assertInitialAskScreen(in: app)
+            app.buttons["chooseModel"].tap()
+            XCTAssertTrue(app.buttons["modelsDone"].waitForExistence(timeout: 5))
+            if largeText {
+                XCTAssertGreaterThan(app.staticTexts["Your assistant, on your phone."].frame.height, 45,
+                                     "Accessibility text sizing must reach the model sheet.")
+            }
+            attachScreen(app, name: "Model — \(appearance)\(largeText ? " large text" : "")")
+            // Exactly one card, and it is the model the app ships.
+            let cards = app.descendants(matching: .any)
+                .matching(NSPredicate(format: "identifier BEGINSWITH %@", "modelCard-"))
+            XCTAssertEqual(cards.count, 1, "The app offers a single model.")
+            let info = app.buttons["modelInfo-bonsai-27b-1bit"]
+            XCTAssertTrue(reveal(info, in: app), "The shipped model must be listed with its details.")
+            info.tap()
+            XCTAssertTrue(app.buttons["modelDetailsDone"].waitForExistence(timeout: 5))
+            XCTAssertTrue(element("modelDownloadSize", in: app).waitForExistence(timeout: 5))
+            XCTAssertTrue(element("modelFileFormat", in: app).exists)
+            attachScreen(app, name: "Model details — \(appearance)\(largeText ? " large text" : "")")
+            app.buttons["modelDetailsDone"].tap()
+            app.buttons["modelsDone"].tap()
+            app.tabBars.buttons["Settings"].tap()
+            let manage = app.buttons["manageModels"]
+            XCTAssertTrue(reveal(manage, in: app))
+            manage.tap()
+            XCTAssertTrue(app.buttons["modelsDone"].waitForExistence(timeout: 5))
+            // Nothing is downloaded in the simulator, so the offer to fetch it must be present.
+            XCTAssertTrue(reveal(app.buttons["downloadModel-bonsai-27b-1bit"], in: app),
+                          "An uninstalled model must offer its download.")
+            app.terminate()
+        }
+        #endif
+    }
+
+    @MainActor
     private func launch(appearance: String, largeText: Bool = false) -> XCUIApplication {
         let app = XCUIApplication()
         app.launchArguments = ["-ui-testing-appearance", appearance]

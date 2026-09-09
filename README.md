@@ -4,36 +4,37 @@
 
 A little more ready. A little more outside.
 
-A native **iPhone app in Swift and SwiftUI** for planning your first camping weekends. Ask about gear, food storage, or preparing a campsite. Read the saved guides behind an answer. **Gemma 4 E2B runs locally through Apple MLX**, using model files bundled with the app: no account, API key, cloud inference, or runtime download.
+A native **iPhone app in Swift and SwiftUI** for planning your first camping weekends. Ask about gear, food storage, or preparing a campsite. Read the saved guides behind an answer. **Answers run on your iPhone**, on one model: [Bonsai 27B](https://huggingface.co/prism-ml/Bonsai-27B-mlx-1bit), Prism ML's 1-bit MLX conversion of Qwen3.6-27B. No picker, no fallback, no cloud. No account or API key is used. Downloading the model needs internet; asking questions afterwards does not.
 
 ![Camping Buddy — on-device AI and saved camping guides](docs/images/hero.svg)
 
-> **Status: running on a real iPhone, not released.** Version 0.2 has been built, installed, and tested on an iPhone 15 Pro. It is not on the App Store. The saved library is a small development collection, not expert-reviewed field guidance. An independent test with the Mac off and the phone's radios disabled is still pending.
+> **Status: not yet run on a phone.** Version 0.4 replaces the five-model library with a single model, Bonsai 27B. Earlier builds were tested on an iPhone 15 Pro with a *different* model (Gemma 4 E2B); those records are kept as history and are not evidence about Bonsai. Bonsai 27B is 4.78 GiB of weights, and whether an 8 GB iPhone can load it at all is the open question — see [memory](docs/MODEL_CATALOG.md#memory-which-is-the-open-risk). It is not on the App Store. The saved library is a small development collection, not expert-reviewed field guidance. An independent test with the Mac off and the phone's radios disabled is still pending.
 
 ## What it does
 
 - **Ask before you pack.** Suggested questions cover sleeping gear, food storage around wildlife, and first-trip planning. The first Ask prepares the local model automatically.
 - **Read the reference.** Answers link to the saved guides they cite. A reference opens the actual bundled summary, including its National Park Service source and review status.
 - **Keep a small field library.** Eight short guides cover planning, essential gear, navigation preparation, shelter, campsite setup, food storage, and simple meals. Search or filter them without loading the model.
+- **Save the model once.** Open the model pill or Settings → Manage the model. See the download and storage size, pause and resume the transfer, and remove the download to reclaim the space. [Catalog and compatibility details](docs/MODEL_CATALOG.md).
 - **Make it comfortable to read.** Light, dark, and system appearance; larger text; selectable answers; a compact composer; and a fresh-conversation action.
 
 Each question starts a fresh model session. The visible conversation stays in memory, holds up to 12 entries, and clears when the app process ends. There is no saved chat history or cloud sync.
 
 ## The screens
 
-| Ask | Field guide | Settings |
+| Ask | Field guide | Model |
 |:--:|:--:|:--:|
-| ![Camping Buddy in light mode](docs/images/ask-light.png) | ![The saved shelter and bedding guide](docs/images/guide.png) | ![Local model and appearance settings](docs/images/settings.png) |
-| A calm starting point and suggested questions | The complete saved summary, with its source | Model preparation, appearance, and privacy details |
+| ![Camping Buddy in light mode](docs/images/ask-light.png) | ![The saved shelter and bedding guide](docs/images/guide.png) | ![The model screen with its download size and storage](docs/images/models-light.png) |
+| A calm starting point and suggested questions | The complete saved summary, with its source | The model download, its size, and storage |
 
 <details>
 <summary>See the dark appearance</summary>
 
-<p align="center"><img src="docs/images/ask-dark.png" width="340" alt="Camping Buddy in dark mode"></p>
+<p align="center"><img src="docs/images/ask-dark.png" width="300" alt="Camping Buddy in dark mode"> <img src="docs/images/models-dark.png" width="300" alt="The model screen in dark mode"></p>
 
 </details>
 
-These are actual iPhone simulator captures of the SwiftUI app. They are not generated answer demonstrations. The Settings screenshot honestly identifies the simulator as a reference preview; real inference was checked separately on a physical phone. The header is original vector artwork. The interface takes inspiration from Locally AI by LM Studio, with its own camping identity.
+These are actual iPhone simulator captures of the SwiftUI app. They are not generated answer demonstrations. The model download and real inference are checked separately on a physical phone; simulator screenshots demonstrate the interface only. The header is original vector artwork. The interface takes inspiration from Locally AI by LM Studio, with its own camping identity.
 
 ## Try the interface
 
@@ -43,7 +44,7 @@ cd camping-buddy
 open CampingBuddy.xcodeproj
 ```
 
-Let Xcode resolve the pinned packages, select an iPhone simulator, and run. The library and interface can be explored without downloading the model. The simulator explains that local MLX generation requires a physical Apple device; it does not substitute a canned AI answer.
+Let Xcode resolve the pinned packages, select an iPhone simulator, and run. The library and interface can be explored without downloading the model. The simulator explains that generation requires a physical Apple device; it does not substitute a canned AI answer.
 
 The project was built with **Xcode 26.6 / Swift 6.3.3**. If Xcode reports a missing Metal compiler, install its toolchain component:
 
@@ -53,18 +54,11 @@ xcodebuild -downloadComponent MetalToolchain
 
 ## Run the model on an iPhone
 
-Provision the model on your Mac before building the phone app:
+In Xcode, choose your development team under Signing & Capabilities, select your connected iPhone, and run. No model weights are bundled in the app.
 
-```sh
-python3 scripts/provision_model.py
-python3 scripts/verify_model.py
-```
+Open **Manage the model** to download Bonsai 27B while online. It is a **4.81 GiB** transfer, pinned to an immutable revision and verified against file hashes before it can be used. Keep the app open until it finishes. You can remove the download afterwards to reclaim the space; the app then reports that no model is installed until you download it again.
 
-This downloads **3.58 GB** of pinned model files and checks their SHA-256 hashes. The download can resume after interruption. The weights stay outside Git; the immutable revision, file sizes, and hashes are recorded in [model-lock.json](model-lock.json).
-
-In Xcode, choose your development team under Signing & Capabilities, select your connected iPhone, and run. Ask a question to prepare the model and get an answer. **Settings → Prepare assistant** loads it beforehand if you prefer.
-
-The verified phone is an **iPhone 15 Pro running iOS 26.6.1**. The project has an iOS 17 compilation floor; that does not establish that every iOS 17 device has enough memory to run the model. See the [device test guide](docs/ON_DEVICE_TEST.md) for the remaining independent offline check.
+The app declares `com.apple.developer.kernel.increased-memory-limit`, because 4.78 GiB of weights must be resident to generate and an 8 GB iPhone otherwise kills the app during the load. The entitlement raises that ceiling; it does not remove it. Prism ML reports a ~3.9 GB deployed footprint and ~11 tok/s on a 12 GB **iPhone 17 Pro Max**. This project's phone is an 8 GB **iPhone 15 Pro**, and the load has not been attempted there. The project has an iOS 17 compilation floor; that does not establish that any given iOS 17 device has enough memory. See the [device test guide](docs/ON_DEVICE_TEST.md) for the remaining independent offline check.
 
 ## How an answer reaches the screen
 
@@ -79,7 +73,7 @@ Search the eight saved guides
      ├── No relevant passage? → Say there is not enough evidence
      │
      ▼
-Gemma 4 E2B · local files · fresh session
+Bonsai 27B on this iPhone · fresh session
      │
      ▼
 Require a completed answer and check its reference IDs
@@ -90,13 +84,15 @@ Require a completed answer and check its reference IDs
 Display the answer with buttons to its saved guides
 ```
 
-The library search is small and deterministic: titles, keywords, and passage text. It does not query a website or an external vector database. The model loader receives a local directory and a local tokenizer. There is no cloud or Apple Foundation Models fallback.
+The library search is small and deterministic: titles, keywords, and passage text. It does not query a website or an external vector database. MLX receives local model files only. There is no cloud inference and, with one model, nothing to fall back to.
 
-The model is **ordinary MLX affine 4-bit Gemma 4 E2B IT**. It is distinct from Google's mobile QAT/LiteRT artifact. [Model provenance](docs/MODEL.md) records that distinction, the retained upstream license files, and the conversion card's inconsistent license metadata.
+**Bonsai 27B is the official Prism ML checkpoint in MLX 1-bit packing**, converted from Qwen3.6-27B. No app-side model code was written for it: MLX Swift LM 3.31.4 already implements `qwen3_5` with the hybrid linear-attention layers this checkpoint uses. The repository also carries a 4-bit vision tower, which this app neither downloads nor uses. [Catalog and source details](docs/MODEL_CATALOG.md).
 
 ## What has actually been measured
 
-On **September 5, 2026**, a single Ask from a fresh app session on the physical iPhone prepared the model and generated an accepted sleeping-gear answer. The check supplied only a question, then used the same request flow as the visible app.
+**Nothing has been measured for Bonsai 27B.** It has not been loaded on a phone.
+
+The table below is a **historical Gemma 4 E2B measurement** from the model this app used to ship. It is kept because it describes the same request flow, not because it predicts anything about a 27B model twelve times its size. On **September 5, 2026**, a single Ask from a fresh app session on the physical iPhone prepared that model and generated an accepted sleeping-gear answer.
 
 | Physical iPhone 15 Pro | Observed |
 |---|---:|
@@ -116,7 +112,7 @@ Separate [Mac evaluation records](evaluation/records/mac-final.jsonl) were colle
 
 The app checks whether a reference exists and was supplied to the model. That catches an invented label; it cannot establish that every sentence accurately interprets the passage. During development, one food-storage answer used a real source but made its wording stronger than the saved guidance. Another raw answer invented a source after a prompt override and was withheld.
 
-Those findings are retained in the [initial evaluation record](evaluation/records/mac-initial.jsonl). Current code also requires normal stop-token completion and rejects a small set of explicit override phrases before generation. This is not a claim of general prompt-injection resistance or expert-level camping advice.
+Those findings are retained in the [initial evaluation record](evaluation/records/mac-initial.jsonl). MLX generation also requires normal stop-token completion and rejects a small set of explicit override phrases before generation. This is not a claim of general prompt-injection resistance or expert-level camping advice.
 
 The app does not provide current weather, closures, permits, fire permissions, medical diagnosis, or edible-plant identification. Its eight guides are original summaries based on National Park Service material, with attribution kept in the app. See [content provenance](docs/CONTENT.md).
 
@@ -129,9 +125,9 @@ swift test --scratch-path .build/core
 python3 scripts/check_public_repo.py
 ```
 
-**Eight core tests** cover local content, retrieval, scope routing, override handling, and unknown or unsupplied citations. [CI](.github/workflows/ci.yml) runs the same core suite and public repository checks.
+**Core tests** cover local content, retrieval, scope routing, citations, catalog validation, download integrity, and model storage. Model-management checks include interrupted transfers, corruption, storage limits, trusted paths, and persistence. [CI](.github/workflows/ci.yml) runs the same core suite and public repository checks.
 
-**Four simulator interface tests** cover light/dark appearance, larger text, searching and reading a guide, simulator availability, the real scope response, clearing a conversation, and asking about a guide:
+**Five simulator interface tests** cover light/dark appearance, larger text, searching and reading a guide, the model screen and its details, simulator availability, the real scope response, clearing a conversation, and asking about a guide:
 
 ```sh
 xcodebuild -project CampingBuddy.xcodeproj -scheme CampingBuddy \
@@ -140,18 +136,22 @@ xcodebuild -project CampingBuddy.xcodeproj -scheme CampingBuddy \
   -only-testing:CampingBuddyUITests/CampingBuddyUITests test
 ```
 
-The [connected-device check](docs/DEVICE_DEVELOPMENT_CHECK.md) documents the opt-in in-app test that produced the published phone record. Physical inference is not run by CI. Battery, heat, total memory, wider device support, and field reliability still need testing.
+The deterministic [model-loading check](DeveloperChecks/ChatModelFlowCheck.swift) compiles the actual chat coordinator against controlled dependencies. It covers cancellation, failed loads, failed selection commits, restoring the previous model, and persisted selection. Run `zsh scripts/check_chat_model_flow.sh`; these controlled responses are not inference evidence.
+
+The [connected-device check](docs/DEVICE_DEVELOPMENT_CHECK.md) documents the opt-in in-app test that produced the earlier phone record. It has not been run against Bonsai 27B. Physical inference is not run by CI. Battery, heat, total memory, wider device support, and field reliability still need testing.
 
 ## Project map
 
 ```text
-App/                         SwiftUI screens, chat state, local MLX engine
-Core/                        Reference retrieval and answer policy
+App/                         SwiftUI screens, chat state, the MLX engine
+Core/                        Retrieval, answer policy, model catalog and storage
 Tests/                       Fast core and retrieval checks
 UITests/                     Interface checks and optional phone test
 Resources/ReferenceLibrary/  Eight original, attributed preparation guides
+Resources/ModelCatalog/      The pinned download manifest: sizes, hashes, and provenance
 Resources/Acknowledgments/  Third-party notices
-Resources/Models/            Provisioned weights; ignored by Git
+Resources/Entitlements/      The increased memory limit the 27B weights require
+Resources/Models/            Mac evaluation weights; ignored by Git
 scripts/                     Provisioning, verification, and repository checks
 evaluation/records/          Actual development runs, including failed cases
 docs/                        Model, content, validation, and device notes

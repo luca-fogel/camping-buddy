@@ -10,9 +10,11 @@ Excluded from this milestone: accounts, cloud inference, voice, payments, App St
 
 ## Model choice and proof required
 
-The selected model family is Gemma 4 E2B. The first implementation uses **Gemma 4 E2B IT in ordinary MLX 4-bit format**, with MLX Swift LM 3.31.4 and text-only loading. This follows the documented MLX route and allows a later fused-weight export from Mac adaptation. This artifact is distinct from Google's mobile QAT model for LiteRT-LM. It does not establish the mobile-QAT pipeline, quality, RAM, or latency. If that specific mobile artifact is required, benchmark the LiteRT Swift route separately before settling the shipping runtime.
+The app ships exactly one model: **Bonsai 27B, Prism ML's MLX 1-bit conversion of Qwen3.6-27B**, loaded with MLX Swift LM 3.31.4 as text only. It is downloaded on the phone; nothing is bundled. There is no picker, no fallback, and no substitution — if it is not downloaded or will not load, the app says so.
 
-Gemma E2B has about 2.3B effective parameters and 5.1B including embeddings; its name is not a phone RAM estimate. Use actual phone memory, response, and thermal measurements to decide suitability. [Google model card](https://ai.google.dev/gemma/docs/core/model_card_4), [Google MLX integration](https://ai.google.dev/gemma/docs/integrations/mlx), [mobile QAT distinction](https://huggingface.co/google/gemma-4-E2B-it-qat-mobile-transformers).
+*Superseded on 2026-09-09.* The first implementation used Gemma 4 E2B IT in ordinary MLX 4-bit, which was measured on the phone; a five-model library briefly followed it. Those records are retained in [VALIDATION.md](VALIDATION.md) and describe models the app no longer offers.
+
+Bonsai 27B is a 4.78 GiB weight file at ~1.125 bits per weight. Its name is not a phone RAM estimate, and neither is its download size. The publisher targets a 12 GB iPhone 17 Pro Max; this project's phone is an 8 GB iPhone 15 Pro, so the app declares the increased memory limit entitlement and the load remains unproven. Use actual phone memory, response, and thermal measurements to decide suitability. [Model card](https://huggingface.co/prism-ml/Bonsai-27B-mlx-1bit), [base model](https://huggingface.co/Qwen/Qwen3.6-27B).
 
 ## Acceptance gate
 

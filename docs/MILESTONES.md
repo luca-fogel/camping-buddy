@@ -2,24 +2,27 @@
 
 Update this file as evidence arrives; do not mark physical-device gates from a Mac or simulator run.
 
+**2026-09-09: the shipped model changed.** The app now offers a single model, Bonsai 27B (MLX 1-bit), replacing Gemma 4 E2B and the four-model library. Device gates earned by Gemma do not carry over and have been un-ticked below; the Gemma results stay in [VALIDATION.md](VALIDATION.md) as history.
+
 ## 1. First independent offline prototype
 
 - [x] Establish isolated project and inspect tools/storage.
-- [x] Confirm audience/region and record Gemma 4 E2B preference.
+- [x] Confirm audience/region and record a model preference (Gemma 4 E2B originally; Bonsai 27B since 2026-09-09).
 - [x] Build original, locally readable seed library with source/date/rights metadata.
 - [x] Implement deterministic retrieval and source-identity checks.
 - [x] Wire SwiftUI question, library, loading/unavailable/failure states.
 - [x] Download and verify complete pinned assets, including the copy inside the iPhone app.
 - [x] Build pinned Swift local-only model integration for iPhone (unsigned Release).
 - [x] Pass core tests (8) and simulator UI checks (4).
-- [x] Run real Mac inference with networking denied and review ten scenarios; preserve quality gaps in VALIDATION.md.
+- [x] Run real Mac inference with networking denied and review ten scenarios; preserve quality gaps in VALIDATION.md. *(Gemma 4 E2B)*
 - [x] Connect physical iPhone by USB; developer disk image services ready; signed Release build verifies.
 - [x] Install signed build on physical iPhone 15 Pro, iOS 26.6.1.
-- [x] Generate a real, cited answer on the connected physical iPhone; record load/response/allocator measurements.
+- [ ] **Load Bonsai 27B on the physical iPhone at all.** 4.78 GiB of weights on an 8 GB device with the increased memory limit entitlement; a jetsam kill is a plausible outcome and counts as a recorded result.
+- [ ] Generate a real, cited answer on the connected physical iPhone; record load/response/allocator measurements.
 - [ ] Cold launch and answer with Wi-Fi/cellular off and Mac off.
 - [ ] Record device memory, load/first-output/total-answer delay, and failures.
 
-Installation completed on 2026-09-05. The development check inside Camping Buddy passed on a physical iPhone without a separate test runner. Version 0.2 also passed the single-Ask flow from a fresh app session. Mac-off/radios-off acceptance remains pending.
+Installation completed on 2026-09-05 and a real cited answer was generated on the phone — **with Gemma 4 E2B**, which the app no longer ships. The single-model Bonsai 27B build has never run on a phone, so the generation gate is open again. Mac-off/radios-off acceptance remains pending and now sits behind the memory question.
 
 ## 2. Evidence and data
 
@@ -30,12 +33,12 @@ Installation completed on 2026-09-05. The development check inside Camping Buddy
 
 ## 3. Mac adaptation and custom-weight deployment
 
-- [ ] Verify installed Studio's Gemma E2B architecture/version support in an isolated test; do not assume prior Qwen support transfers.
+- [ ] Verify installed Studio's `qwen3_5` architecture/version support, and whether a 1-bit base is a viable LoRA target at all, in an isolated test; the earlier Gemma E2B audit does not transfer.
 - [ ] Prepare separately licensed training examples, with no evaluation leakage.
 - [ ] Run a small SFT adapter experiment in Studio with measured memory and interactivity; preserve checkpoints, recipe, and base identity.
 - [ ] Export fused MLX weights and prove the exact custom checkpoint loads in the iPhone runtime. Do not assume Python adapter sidecars match Swift adapter targets.
 - [ ] Evaluate quantization and regression against the original baseline; retain an unchanged control.
-- [ ] If choosing Google mobile QAT/LiteRT, verify the exact custom-weight conversion/export separately rather than treating standard MLX 4-bit as equivalent.
+- [ ] Verify any custom-weight export back into Prism ML's 1-bit packing separately; do not assume a standard MLX quantized export reloads in the same runtime path.
 
 ## 4. Field validation and release
 

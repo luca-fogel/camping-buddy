@@ -11,7 +11,7 @@ if not files:
     raise SystemExit("Resolve the pinned packages first; no local license files found.")
 parts = ["Camping Buddy prototype — third-party notices\n\n"
          "Original app source is new. The local tokenizer protocol adapter follows the MLX Swift LM integration example (MIT). "
-         "The model's license and model cards are bundled separately in Models/gemma-4-E2B-it-4bit. "
+         "The downloaded model's attribution and pinned source links are available under Manage the model. "
          "Reference metadata is available with each local passage.\n"]
 for path in files:
     parts.append("\n" + "=" * 72 + "\n" + str(path.relative_to(checkouts)) + "\n\n" + path.read_text())

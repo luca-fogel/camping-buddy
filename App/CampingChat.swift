@@ -3,8 +3,9 @@ import UIKit
 
 struct CampingChat: View {
     @ObservedObject var model: ChatModel
+    @ObservedObject var modelLibrary: ModelLibrary
     var openGuide: (ReferencePassage) -> Void
-    var openSettings: () -> Void
+    var openModels: () -> Void
     @FocusState private var composerFocused: Bool
     private var busy: Bool { model.isBusy }
 
@@ -63,6 +64,12 @@ struct CampingChat: View {
                             .accessibilityLabel("New conversation")
                             .accessibilityIdentifier("newConversation")
                     }
+                    ToolbarItem(placement: .topBarLeading) {
+                        if !model.entries.isEmpty {
+                            Button(action: openModels) { Image(systemName: "cpu") }
+                                .accessibilityLabel("Choose model")
+                        }
+                    }
                 }
             }
         }
@@ -70,16 +77,17 @@ struct CampingChat: View {
 
     private var welcome: some View {
         VStack(spacing: 28) {
-            Button(action: openSettings) {
+            Button(action: openModels) {
                 HStack(spacing: 6) {
                     Circle().fill(CampStyle.accent).frame(width: 5, height: 5)
-                    Text("Gemma 4 E2B").font(.caption.weight(.medium))
+                    Text(model.selectedModelName).font(.caption.weight(.medium))
                     Text("· On device").font(.caption)
                     Image(systemName: "chevron.down").font(.system(size: 8, weight: .bold))
                 }.foregroundStyle(CampStyle.secondary).padding(.vertical, 9).padding(.horizontal, 13)
                     .background(CampStyle.subtle, in: Capsule())
                     .frame(minHeight: 44).contentShape(Rectangle())
-            }.buttonStyle(.plain).accessibilityLabel("Gemma 4 E2B, on device. Open settings")
+            }.buttonStyle(.plain).accessibilityLabel("\(model.selectedModelName), on device. Choose model")
+                .accessibilityIdentifier("chooseModel")
 
             VStack(spacing: 16) {
                 CampMark(size: 66)
@@ -172,7 +180,12 @@ private struct AnswerView: View {
             VStack(alignment: .leading, spacing: 16) {
                 HStack(spacing: 9) {
                     CampMark(size: 27)
-                    Text("Camping Buddy").font(.subheadline.weight(.semibold))
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text("Camping Buddy").font(.subheadline.weight(.semibold))
+                        if let name = entry.modelName {
+                            Text(name).font(.caption2).foregroundStyle(CampStyle.secondary)
+                        }
+                    }
                     if isWorking { ProgressView().scaleEffect(0.75) }
                     Spacer()
                 }

@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "defaultModelID": "bonsai-27b-1bit",
+  "models": [
+    {
+      "id": "bonsai-27b-1bit",
+      "name": "Bonsai (27B)",
+      "family": "Bonsai",
+      "runtime": "mlx",
+      "repository": "prism-ml/Bonsai-27B-mlx-1bit",
+      "revision": "ef22f239c670078e1507f9769bcaa66657332b96",
+      "totalBytes": 5159412937,
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "size": 10174,
+          "gitBlobSHA": "66a27ec5ff940d3a9652d2948746ebac4c9d0188"
+        },
+        {
+          "path": "NOTICE.txt",
+          "size": 411,
+          "gitBlobSHA": "09a2d121096b1e3cc108545c79259ffaa3319807"
+        },
+        {
+          "path": "README.md",
+          "size": 23007,
+          "gitBlobSHA": "1efe9dd38f7eee383fd408a9ebc86648030f24ea"
+        },
+        {
+          "path": "chat_template.jinja",
+          "size": 7764,
+          "gitBlobSHA": "a8755d827c0a7b614c246c4060dfd58ab352a8ff"
+        },
+        {
+          "path": "config.json",
+          "size": 3790,
+          "gitBlobSHA": "97191e17a9aa9d9660be336206307c5ab53ec2e6"
+        },
+        {
+          "path": "merges.txt",
+          "size": 3353259,
+          "gitBlobSHA": "a494e019ca1502219fd0128658b979e5f05ae8e8"
+        },
+        {
+          "path": "model.safetensors",
+          "size": 5129115752,
+          "sha256": "7e464b0ae06d249026fb9e81d183cdc0de5b998ea1aa243f9b09a244835643a5"
+        },
+        {
+          "path": "model.safetensors.index.json",
+          "size": 185580,
+          "gitBlobSHA": "61ac4232874500d3579dd1bb6486288ea37de964"
+        },
+        {
+          "path": "tokenizer.json",
+          "size": 19989343,
+          "sha256": "87a7830d63fcf43bf241c3c5242e96e62dd3fdc29224ca26fed8ea333db72de4"
+        },
+        {
+          "path": "tokenizer_config.json",
+          "size": 1098,
+          "gitBlobSHA": "e15d4cc343e26fd4b2fdc18ffecfc256b90a547b"
+        },
+        {
+          "path": "vocab.json",
+          "size": 6722759,
+          "gitBlobSHA": "0aa0ce0658d60ac4a5d609f4eadb0e8e43514176"
+        }
+      ],
+      "license": "Apache-2.0",
+      "provenance": "Official Prism ML Bonsai checkpoint in MLX 1-bit packing, converted from Qwen/Qwen3.6-27B. Source: https://huggingface.co/prism-ml/Bonsai-27B-mlx-1bit/blob/ef22f239c670078e1507f9769bcaa66657332b96/README.md License: https://huggingface.co/prism-ml/Bonsai-27B-mlx-1bit/blob/ef22f239c670078e1507f9769bcaa66657332b96/LICENSE.txt",
+      "modelType": "qwen3_5",
+      "textModelType": "qwen3_5_text",
+      "quantizationBits": 1,
+      "parameterCount": "27B",
+      "validationStatus": "compatible-candidate",
+      "compatibilityNote": "Binary language weights at ~1.125 bits per weight, group size 128, over a Qwen3.6-27B hybrid-attention backbone; the vision tower ships in 4-bit HQQ and is unused here. Prism documents MLX Swift support and reports a ~3.9 GB deployed footprint on an iPhone 17 Pro Max. This app's verified phone is an iPhone 15 Pro with 8 GB, so the increased memory limit entitlement is required and a load may still be refused. This exact app/device combination still requires a generation test.",
+      "chatOptions": {
+        "enableThinking": false,
+        "temperature": 0.7,
+        "topP": 0.95,
+        "topK": 40,
+        "systemPromptMode": "system"
+      }
+    }
+  ]
+}

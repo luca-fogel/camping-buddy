@@ -1,0 +1,208 @@
+{
+  "recordedAt": "2026-09-05T22:07:55.174318+00:00",
+  "method": "HEAD",
+  "scope": "First safetensors file per pinned model; response headers only, no weights downloaded and no inference tested. Redirect queries are omitted.",
+  "checks": [
+    {
+      "id": "gemma-4-e2b-it-4bit",
+      "hosts": [
+        "huggingface.co",
+        "huggingface.co",
+        "us.aws.cdn.hf.co"
+      ],
+      "status": 200,
+      "repository": "mlx-community/gemma-4-E2B-it-4bit",
+      "revision": "238767527555cb75a05732a84dff5d6ba0dd6809"
+    },
+    {
+      "id": "qwen2-5-0-5b-instruct-4bit",
+      "hosts": [
+        "huggingface.co",
+        "us.aws.cdn.hf.co"
+      ],
+      "status": 200,
+      "repository": "mlx-community/Qwen2.5-0.5B-Instruct-4bit",
+      "revision": "a5339a4131f135d0fdc6a5c8b5bbed2753bbe0f3"
+    },
+    {
+      "id": "smollm2-360m-instruct-6bit",
+      "hosts": [
+        "huggingface.co",
+        "us.aws.cdn.hf.co"
+      ],
+      "status": 200,
+      "repository": "mlx-community/SmolLM2-360M-Instruct-6bit",
+      "revision": "642affd1f9e387d1b56c745894afc83795aebe1d"
+    },
+    {
+      "id": "qwen3-0-6b-4bit",
+      "hosts": [
+        "huggingface.co",
+        "us.aws.cdn.hf.co"
+      ],
+      "status": 200,
+      "repository": "mlx-community/Qwen3-0.6B-4bit",
+      "revision": "73e3e38d981303bc594367cd910ea6eb48349da8"
+    },
+    {
+      "id": "lfm2-1-2b-4bit",
+      "hosts": [
+        "huggingface.co",
+        "us.aws.cdn.hf.co"
+      ],
+      "status": 200,
+      "repository": "mlx-community/LFM2-1.2B-4bit",
+      "revision": "3843e4ad0fcb8b7ed8a050908ac8f0bb5320d1bf"
+    },
+    {
+      "id": "lfm2-5-1-2b-instruct-4bit",
+      "hosts": [
+        "huggingface.co",
+        "us.aws.cdn.hf.co"
+      ],
+      "status": 200,
+      "repository": "mlx-community/LFM2.5-1.2B-Instruct-4bit",
+      "revision": "dee2f8a2786e6648bb644a7ca40652842490034b"
+    },
+    {
+      "id": "llama-3-2-1b-instruct-4bit",
+      "hosts": [
+        "huggingface.co",
+        "us.aws.cdn.hf.co"
+      ],
+      "status": 200,
+      "repository": "mlx-community/Llama-3.2-1B-Instruct-4bit",
+      "revision": "08231374eeacb049a0eade7922910865b8fce912"
+    },
+    {
+      "id": "gemma-3-1b-it-qat-4bit",
+      "hosts": [
+        "huggingface.co",
+        "us.aws.cdn.hf.co"
+      ],
+      "status": 200,
+      "repository": "mlx-community/gemma-3-1b-it-qat-4bit",
+      "revision": "15fed4eafb456c6fcb2a1165f19ac609670ed14b"
+    },
+    {
+      "id": "qwen2-5-1-5b-instruct-4bit",
+      "hosts": [
+        "huggingface.co",
+        "us.aws.cdn.hf.co"
+      ],
+      "status": 200,
+      "repository": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+      "revision": "8b403126fc14f14cfc99bb4cfa72ecbc129ea677"
+    },
+    {
+      "id": "qwen3-1-7b-4bit",
+      "hosts": [
+        "huggingface.co",
+        "us.aws.cdn.hf.co"
+      ],
+      "status": 200,
+      "repository": "mlx-community/Qwen3-1.7B-4bit",
+      "revision": "3b1b1768f8f8cf8351c712464f906e86c2b8269e"
+    },
+    {
+      "id": "deepseek-r1-distill-qwen-1-5b-4bit",
+      "hosts": [
+        "huggingface.co",
+        "us.aws.cdn.hf.co"
+      ],
+      "status": 200,
+      "repository": "mlx-community/DeepSeek-R1-Distill-Qwen-1.5B-4bit",
+      "revision": "933185be1b8f81d9a21dcfa15ff73470d3545240"
+    },
+    {
+      "id": "gemma-2-2b-it-4bit",
+      "hosts": [
+        "huggingface.co",
+        "us.aws.cdn.hf.co"
+      ],
+      "status": 200,
+      "repository": "mlx-community/gemma-2-2b-it-4bit",
+      "revision": "2c715097ff9c081a6ac1e5cd239e2ac756b5bd99"
+    },
+    {
+      "id": "lfm2-5-2-6b-4bit",
+      "hosts": [
+        "huggingface.co",
+        "us.aws.cdn.hf.co"
+      ],
+      "status": 200,
+      "repository": "mlx-community/LFM2.5-2.6B-4bit",
+      "revision": "72a08228cf703cd7dc0187abf4edbbd8e935f864"
+    },
+    {
+      "id": "smollm3-3b-4bit",
+      "hosts": [
+        "huggingface.co",
+        "us.aws.cdn.hf.co"
+      ],
+      "status": 200,
+      "repository": "mlx-community/SmolLM3-3B-4bit",
+      "revision": "d3a7e0594d6642dbcfb7d149bed8b0bdf49f95ce"
+    },
+    {
+      "id": "qwen2-5-3b-instruct-4bit",
+      "hosts": [
+        "huggingface.co",
+        "us.aws.cdn.hf.co"
+      ],
+      "status": 200,
+      "repository": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+      "revision": "4f83f8f146fdf28b512a06562b671d7af4fab457"
+    },
+    {
+      "id": "llama-3-2-3b-instruct-4bit",
+      "hosts": [
+        "huggingface.co",
+        "us.aws.cdn.hf.co"
+      ],
+      "status": 200,
+      "repository": "mlx-community/Llama-3.2-3B-Instruct-4bit",
+      "revision": "7f0dc925e0d0afb0322d96f9255cfddf2ba5636e"
+    },
+    {
+      "id": "phi-3-5-mini-instruct-4bit",
+      "hosts": [
+        "huggingface.co",
+        "us.aws.cdn.hf.co"
+      ],
+      "status": 200,
+      "repository": "mlx-community/Phi-3.5-mini-instruct-4bit",
+      "revision": "7b2052fd882fe017300d4d42a4eb06a27b816af4"
+    },
+    {
+      "id": "phi-4-mini-instruct-4bit",
+      "hosts": [
+        "huggingface.co",
+        "us.aws.cdn.hf.co"
+      ],
+      "status": 200,
+      "repository": "mlx-community/Phi-4-mini-instruct-4bit",
+      "revision": "ac1c269cb4222a4e136a3d09edad301056c1f36a"
+    },
+    {
+      "id": "qwen3-4b-4bit",
+      "hosts": [
+        "huggingface.co",
+        "us.aws.cdn.hf.co"
+      ],
+      "status": 200,
+      "repository": "mlx-community/Qwen3-4B-4bit",
+      "revision": "4dcb3d101c2a062e5c1d4bb173588c54ea6c4d25"
+    },
+    {
+      "id": "gemma-3-4b-it-4bit-dwq",
+      "hosts": [
+        "huggingface.co",
+        "us.aws.cdn.hf.co"
+      ],
+      "status": 200,
+      "repository": "mlx-community/gemma-3-4b-it-4bit-DWQ",
+      "revision": "6758b1ce7fd51401d2e67830f4f52efdb54c893c"
+    }
+  ]
+}

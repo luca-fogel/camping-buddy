@@ -39,10 +39,10 @@ def forbidden_path(name):
     if any(part in private_dirs or part.endswith((".app", ".dSYM", ".xcresult", ".mlmodelc"))
            for part in path.parts):
         return True
-    if path.name == ".DS_Store" or path.name == ".env":
+    if path.name == ".DS_Store" or path.name == ".env" or path.name.startswith(".env."):
         return True
     if path.suffix.lower() in {".safetensors", ".gguf", ".xcuserstate", ".ipa",
-                               ".mobileprovision", ".p12", ".car"}:
+                               ".mobileprovision", ".p12", ".p8", ".car"}:
         return True
     if name.startswith("evaluation/runs/"):
         return True
@@ -175,6 +175,7 @@ def check_resources(paths, lock):
     required = {
         ".gitignore", "README.md", "model-lock.json",
         "Resources/ReferenceLibrary/references.json",
+        "Resources/ModelCatalog/catalog.json",
         "Resources/Acknowledgments/ThirdPartyNotices.txt",
         "evaluation/scenarios.json", "App/Assets.xcassets/AppIcon.appiconset/AppIcon.png",
         "App/Assets.xcassets/CampMark.imageset/CampMark.png",
@@ -199,6 +200,26 @@ def check_resources(paths, lock):
     return errors
 
 
+def check_catalog():
+    catalog = json.loads((ROOT / "Resources/ModelCatalog/catalog.json").read_text())
+    errors = []
+    models = catalog["models"]
+    if catalog["schemaVersion"] != 1 or len(models) != 1:
+        errors.append("The catalog must ship exactly one model")
+    ids = {model["id"] for model in models}
+    if len(ids) != len(models) or catalog["defaultModelID"] not in ids:
+        errors.append("Catalog identities must be unique and include the default")
+    for model in models:
+        if not re.fullmatch(r"[0-9a-f]{40}", model["revision"]):
+            errors.append(f"Unpinned catalog revision: {model['id']}")
+        if model["totalBytes"] != sum(file["size"] for file in model["files"]):
+            errors.append(f"Catalog size mismatch: {model['id']}")
+        for file in model["files"]:
+            if not (file.get("sha256") or file.get("gitBlobSHA")):
+                errors.append(f"Catalog file missing checksum: {model['id']}/{file['path']}")
+    return errors
+
+
 def main():
     try:
         paths = public_paths()
@@ -207,6 +228,7 @@ def main():
         link_errors, link_count = check_readme(paths)
         errors.extend(link_errors)
         errors.extend(check_resources(paths, lock))
+        errors.extend(check_catalog())
         if errors:
             for error in errors:
                 print(f"ERROR: {error}", file=sys.stderr)

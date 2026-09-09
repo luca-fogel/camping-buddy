@@ -1,6 +1,6 @@
 Camping Buddy prototype — third-party notices
 
-Original app source is new. The local tokenizer protocol adapter follows the MLX Swift LM integration example (MIT). The model's license and model cards are bundled separately in Models/gemma-4-E2B-it-4bit. Reference metadata is available with each local passage.
+Original app source is new. The local tokenizer protocol adapter follows the MLX Swift LM integration example (MIT). The downloaded model's attribution and pinned source links are available under Manage the model. Reference metadata is available with each local passage.
 
 
 ========================================================================

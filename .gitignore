@@ -14,3 +14,4 @@ evaluation/runs/
 *.p8
 .env
 .env.*
+.claude-flow/

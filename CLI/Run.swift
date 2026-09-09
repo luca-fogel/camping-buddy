@@ -11,7 +11,11 @@ struct ModelCheck {
         let root = URL(fileURLWithPath: args[1], isDirectory: true)
         let library = try ReferenceLibrary(data: Data(contentsOf: root.appendingPathComponent("Resources/ReferenceLibrary/references.json")))
         let engine = LocalModelEngine()
-        let loadSeconds = try await engine.load(directory: root.appendingPathComponent("Resources/Models/gemma-4-E2B-it-4bit"))
+        // Read the destination from the lock so this check and the provisioning
+        // scripts cannot drift onto different models.
+        let lock = try JSONSerialization.jsonObject(
+            with: Data(contentsOf: root.appendingPathComponent("model-lock.json"))) as! [String: Any]
+        let loadSeconds = try await engine.load(directory: root.appendingPathComponent(lock["bundle_path"] as! String))
         let scenarios: [(String, String)]
         if args.count >= 3 {
             scenarios = [("manual", args[2])]

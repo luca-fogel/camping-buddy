@@ -1,24 +1,23 @@
-# Bundled model
+# The model
 
-The selected first prototype model is **Gemma 4 E2B IT, MLX affine 4-bit**, following [Google's MLX integration example](https://ai.google.dev/gemma/docs/integrations/mlx). This is the community MLX conversion of the instruction-tuned model; it is a separate artifact from Google's LiteRT Mobile QAT exports. Its iPhone suitability must be measured on the target phone.
+Camping Buddy ships **one** model: **Bonsai 27B, Prism ML's MLX 1-bit conversion of Qwen3.6-27B**. Nothing is bundled inside the app. The phone downloads the weights once through the in-app model manager, and the Mac evaluation path provisions the same pinned revision through the scripts below, so the two cannot drift apart.
 
 | Item | Pinned value |
 | --- | --- |
-| Repository | `mlx-community/gemma-4-E2B-it-4bit` |
-| Snapshot | `238767527555cb75a05732a84dff5d6ba0dd6809` |
-| Google source | `google/gemma-4-E2B-it` at `70af34e20bd4b7a91f0de6b22675850c43922a03` |
-| App resource directory | `Models/gemma-4-E2B-it-4bit` |
-| Project directory | `Resources/Models/gemma-4-E2B-it-4bit` |
-| Total locked bundle | 3,583,125,193 bytes (3.337 GiB), 11 files |
-| Weights | One `model.safetensors`, 3,550,670,554 bytes |
-| Architecture | `gemma4`, nested `gemma4_text`, 35 text layers, 20 shared-KV layers |
-| Quantization | Affine 4-bit, group size 64 |
-| Included modalities | Original snapshot includes text, audio, and vision configuration/weights; this app uses text only |
+| Repository | `prism-ml/Bonsai-27B-mlx-1bit` |
+| Snapshot | `ef22f239c670078e1507f9769bcaa66657332b96` |
+| Base model | `Qwen/Qwen3.6-27B` |
+| Project directory (Mac evaluation) | `Resources/Models/Bonsai-27B-mlx-1bit` |
+| Total locked assets | 5,159,412,937 bytes (4.81 GiB), 11 files |
+| Weights | One `model.safetensors`, 5,129,115,752 bytes |
+| Architecture | `qwen3_5`, nested `qwen3_5_text`, 64 layers, hybrid linear attention every 4th layer |
+| Quantization | Affine 1-bit, group size 128 (~1.125 bits per weight per the publisher) |
+| Included modalities | The snapshot carries a 4-bit HQQ vision tower; this app uses text only and does not download the preprocessor configs |
 | Chat formatting | Unmodified local `chat_template.jinja` and tokenizer files |
 
-`model-lock.json` records exact URLs, sizes, SHA-256 checksums, source revision, and required configuration values. The original conversion snapshot is preserved. No model weights were fine-tuned, converted, stripped, or otherwise changed locally.
+`model-lock.json` records exact URLs, sizes, SHA-256 checksums, the source revision, and required configuration values. No model weights were fine-tuned, converted, stripped, or otherwise changed locally.
 
-## Provision before building
+## Provision before running the Mac check
 
 Run from the project directory with Python 3.9 or newer on the Mac while online:
 
@@ -27,32 +26,40 @@ python3 scripts/provision_model.py
 python3 scripts/verify_model.py
 ```
 
-No Python package installation, Hugging Face login, token, or subscription is required for this public snapshot. Provisioning downloads only the listed files, including both model cards and the full license text. Large model assets should remain outside source control. Preserve the lock and scripts in source control.
+No Python package installation, Hugging Face login, token, or subscription is required for this public snapshot. Provisioning downloads only the listed files, including the publisher's `LICENSE.txt` and `NOTICE.txt`. Large model assets stay outside source control; the lock and scripts stay in it.
 
-The downloader verifies completed files and reuses them. Interrupted transfers remain clearly marked `.part` under `.build/model-provision/gemma-4-E2B-it-4bit.download`; rerunning resumes where the host supports byte ranges. A file is moved out of `.part` only after its size and full checksum match. The final directory appears only after every file and the model structure verify, via an atomic directory rename. A separate advisory lock, `.build/model-provision/gemma-4-E2B-it-4bit.provision.lock`, prevents concurrent provisioners. Both staging and locking stay outside app resources, so partial downloads cannot be packaged by Xcode. It refuses symlinks, path traversal, and replacement of an existing invalid final bundle. If a checksum failure reports a specific partial or staged file, inspect and remove that specific file before retrying; do not delete other projects or model directories.
+This is a 4.81 GiB download into `Resources/Models/`, and it is only needed for the Mac evaluation path. The iPhone does not use it — the phone downloads its own copy through the app.
 
-After a successful initial installation, both commands work without networking. Re-running the provisioner with a valid final bundle performs verification and makes no network requests. The verifier can also check the files copied into a built app:
+The downloader verifies completed files and reuses them. Interrupted transfers remain clearly marked `.part` under `.build/model-provision/Bonsai-27B-mlx-1bit.download`; rerunning resumes where the host supports byte ranges. A file is moved out of `.part` only after its size and full checksum match. The final directory appears only after every file and the model structure verify, via an atomic directory rename. A separate advisory lock, `.build/model-provision/Bonsai-27B-mlx-1bit.provision.lock`, prevents concurrent provisioners. Both staging and locking stay outside app resources, so partial downloads cannot be packaged by Xcode. It refuses symlinks, path traversal, and replacement of an existing invalid final bundle. If a checksum failure reports a specific partial or staged file, inspect and remove that specific file before retrying; do not delete other projects or model directories.
 
-```sh
-python3 scripts/verify_model.py --directory /absolute/path/CampingBuddy.app/Models/gemma-4-E2B-it-4bit
-```
+After a successful initial installation, both commands work without networking. Re-running the provisioner with a valid final bundle performs verification and makes no network requests.
 
 Verification checks exact file membership, sizes, hashes, architecture/quantization, presence of a local tokenizer and template, tensor data boundaries, and coverage of every tensor by the shard index. It does not establish inference correctness, memory fit, latency, or camping advice quality.
 
 ## Runtime contract
 
-The app must pass an existing local model directory to MLX Swift LM's LLM loader. A missing or incompatible bundle must produce a visible failure state. It must never use a repository ID that can trigger runtime downloading, an inference endpoint, or another built-in model as fallback. Templates, special tokens, tokenizer, weights, and sources all travel with the installed app.
+The app passes an existing local model directory to MLX Swift LM's LLM loader. A missing or incompatible model must produce a visible failure state. The inference loader never receives a repository ID that could trigger an implicit download, and never uses an inference endpoint. The user-initiated download manager, documented in [MODEL_CATALOG.md](MODEL_CATALOG.md), checks pinned files before making them available to the local loader. Templates, special tokens, tokenizer, weights, and sources must all be present before generation.
 
-Gemma 4 needs its own template and control tokens. [Google's model card](https://huggingface.co/google/gemma-4-E2B-it) describes enabling thinking through the `<|think|>` system token. Keep the initial app in standard text mode using the local template; do not transplant Qwen-specific `/no_think` formatting. The exact Swift package version and runtime validation belong to the app build record.
+No model code was written for this app. MLX Swift LM 3.31.4 registers `"qwen3_5"` in `LLMModelFactory` and implements the hybrid `GatedDeltaNet` layers this checkpoint uses; mlx-swift 0.31.4 accepts 1-bit affine quantization. The app uses the repository's own chat template unmodified and disables thinking mode.
+
+Because there is only one model, there is no switching, no fallback, and no substitution. If the model is not downloaded, the app says so and does not answer.
+
+## Memory
+
+Bonsai 27B is a 4.78 GiB weight file that must be resident to generate. The app declares `com.apple.developer.kernel.increased-memory-limit`; without it an 8 GB iPhone is killed during the load. The publisher reports a ~3.9 GB deployed footprint and ~11 tok/s on a 12 GB iPhone 17 Pro Max. This project's verified phone is an 8 GB iPhone 15 Pro, and **the load has not been attempted there yet**. See [MODEL_CATALOG.md](MODEL_CATALOG.md#memory-which-is-the-open-risk).
 
 ## License and attribution
 
-Google DeepMind created Gemma 4; MLX Community published this MLX conversion. The [Google card at the source revision used for conversion](https://huggingface.co/google/gemma-4-E2B-it/blob/70af34e20bd4b7a91f0de6b22675850c43922a03/README.md) declares Apache-2.0. Neither the upstream snapshot nor this conversion contains a standalone license file, so the bundle includes the verbatim [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0.txt), pinned by SHA-256.
+Prism ML published this conversion; Qwen published the `Qwen3.6-27B` base model. The [repository](https://huggingface.co/prism-ml/Bonsai-27B-mlx-1bit/tree/ef22f239c670078e1507f9769bcaa66657332b96) and its card declare Apache-2.0, and the repository carries its own `LICENSE.txt` and `NOTICE.txt`. Both are in the download manifest, so a downloaded copy on the phone keeps its own attribution rather than relying on this document. The model card names the base model without pinning an upstream commit, which is why the lock repeats the conversion revision for `upstream_revision` and says so.
 
-The conversion card's front matter says `license: gemma`, which conflicts with the original Google source card. Both cards are retained unchanged as `README.md` and `UPSTREAM-MODEL-CARD.md`, and the discrepancy is recorded in the lock. Use the original Google's Apache declaration as the upstream model-license evidence; confirm the community metadata before a distribution release. This local prototype is not a publication or a claim of endorsement.
+This local prototype is not a publication or a claim of endorsement.
 
 ## Validation status
 
-On 2026-09-05, provisioning completed and installed all 11 files (3,583,125,193 bytes). Full SHA-256 verification passed for every file; all 2,511 tensors had valid data boundaries and exact shard-index coverage. A second standalone verification passed. Repeat provisioning passed with the network entry point replaced by a function that raises on any network call, confirming that the valid bundle is reused without a download. Both scripts passed Python compilation. Seven temporary structural-fixture checks passed: complete bundle acceptance and rejection of traversal, unexpected partials, checksum corruption, missing tokenizer, symlinks, and absent indexed tensors. A further fresh-install structural fixture verified that staging and locking occur under `.build/model-provision` and only the completed bundle enters `Resources/Models`; the existing full-model checksums and offline repeat also passed after that change. These fixtures contained one scalar tensor and no generated-answer examples.
+**None on a phone.** The catalog entry is `compatible-candidate`, and the app's interface says "Compatible format · Not yet phone-tested".
 
-The copied assets inside the built iPhone app also passed full verification. Real Mac generation ran with networking denied, and a signed build subsequently generated a real cited answer on the physical iPhone 15 Pro; see [VALIDATION.md](VALIDATION.md) for observations and quality gaps. The independent phone test with networking disabled and Mac off remains pending. Do not infer memory requirements from “E2B,” download size, or simulator results. Record actual load/response/memory/failure behavior, and later battery and heat.
+The metadata was read from Hugging Face's primary model API at the pinned revision on 2026-09-09. Small assets were downloaded and hashed locally; the weight and `tokenizer.json` digests come from LFS metadata. Architecture support was confirmed by reading the pinned `mlx-swift-lm` and `mlx-swift` sources rather than by loading the model.
+
+Earlier records under `evaluation/records/` describe a **different model** — the Gemma 4 E2B baseline this project previously shipped. They are retained as history and are not evidence about Bonsai. See [VALIDATION.md](VALIDATION.md).
+
+Do not infer memory requirements from the download size or from simulator results. Record actual load/response/memory/failure behavior on the phone, and later battery and heat.

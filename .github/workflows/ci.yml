@@ -1,5 +1,5 @@
 # Keep these checks runnable locally. The Swift package contains only the
-# reference/retrieval core; model download and iPhone/GPU builds are separate.
+# reference, retrieval, and model-storage core; iPhone/GPU builds are separate.
 name: CI
 
 on:
@@ -31,3 +31,7 @@ jobs:
         run: python3 scripts/check_public_repo.py
       - name: Test the Swift 6 core package
         run: swift test --scratch-path .build/ci-core
+      - name: Verify the pinned model catalog without downloading weights
+        run: python3 scripts/generate_model_catalog.py --check
+      - name: Check model loading and recovery with controlled dependencies
+        run: zsh scripts/check_chat_model_flow.sh

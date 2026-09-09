@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Bonsai 27B is a ~4.8 GiB download that must be resident to generate.
+	     Without this the app is jetsammed while loading the weights. Apple
+	     grants the entitlement per app; it raises the ceiling but does not
+	     remove it, and an 8 GB iPhone may still refuse the load. -->
+	<key>com.apple.developer.kernel.increased-memory-limit</key>
+	<true/>
+</dict>
+</plist>
