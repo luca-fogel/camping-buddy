@@ -15,7 +15,15 @@ struct ModelCheck {
         // scripts cannot drift onto different models.
         let lock = try JSONSerialization.jsonObject(
             with: Data(contentsOf: root.appendingPathComponent("model-lock.json"))) as! [String: Any]
-        let loadSeconds = try await engine.load(directory: root.appendingPathComponent(lock["bundle_path"] as! String))
+        // Supply the catalog descriptor too. Without it the engine falls back to a
+        // placeholder identity and every record misattributes the answer.
+        let catalog = try ModelCatalog(data: Data(contentsOf: root.appendingPathComponent(
+            "Resources/ModelCatalog/catalog.json")))
+        guard let descriptor = catalog.model(id: catalog.defaultModelID) else {
+            throw ModelCatalogError.invalid("The catalog has no default model.")
+        }
+        let modelDirectory = root.appendingPathComponent(lock["bundle_path"] as! String)
+        let loadSeconds = try await engine.load(directory: modelDirectory, model: descriptor)
         let scenarios: [(String, String)]
         if args.count >= 3 {
             scenarios = [("manual", args[2])]

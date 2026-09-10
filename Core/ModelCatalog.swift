@@ -130,8 +130,10 @@ public struct ModelCatalog: Codable, Sendable {
                                                options: .regularExpression) != nil,
                         "Model repository is outside the curated runtime publishers: \(model.id)")
             try require(Self.hex(model.revision, count: 40), "Model revision must be immutable: \(model.id)")
-            // Bonsai packs binary weights at one bit; MLX itself only rejects bits <= 0.
-            try require([1, 2, 3, 4, 5, 6, 8].contains(model.quantizationBits),
+            // MLX's affine_quantize rejects anything below 2 bits, and the loader
+            // converts every quantized layer through it, so a 1-bit catalog entry
+            // verifies perfectly and then dies on load. Keep 1 out of this list.
+            try require([2, 3, 4, 5, 6, 8].contains(model.quantizationBits),
                         "Unsupported quantization: \(model.id)")
             if let path = model.bundledRelativePath {
                 try require(Self.safeRelativePath(path) && path.hasPrefix("Models/"), "Unsafe bundled path.")

@@ -17,11 +17,11 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "scripts/model_catalog_source.json"
 OUTPUT = ROOT / "Resources/ModelCatalog/catalog.json"
-DEFAULT_ID = "bonsai-27b-1bit"
+DEFAULT_ID = "ternary-bonsai-8b-2bit"
 # The one shipped choice: ID, user-visible name, exact repository, expected architecture.
-CHOICE = (DEFAULT_ID, "Bonsai (27B)", "prism-ml/Bonsai-27B-mlx-1bit", "qwen3_5")
-# model.safetensors is a single ~4.8 GiB artifact, so the per-asset ceiling sits above it.
-MAX_ASSET_BYTES = 8_000_000_000
+CHOICE = (DEFAULT_ID, "Ternary Bonsai (8B)", "prism-ml/Ternary-Bonsai-8B-mlx-2bit", "qwen3")
+# The weights are a single ~2.2 GB artifact; the ceiling sits above it with room to spare.
+MAX_ASSET_BYTES = 4_000_000_000
 
 def require(condition: bool, message: str) -> None:
     if not condition:
@@ -52,7 +52,10 @@ def validate_catalog(catalog: dict) -> None:
     require({"config.json", "tokenizer.json", "tokenizer_config.json"} <= paths
             and any(p.endswith(".safetensors") for p in paths), "Missing MLX offline assets")
     require(any(p.lower().startswith("license") for p in paths), "Missing the upstream license file")
-    require(model["quantizationBits"] == 1, "Bonsai 27B ships as 1-bit packed weights")
+    # Not just a fact about this checkpoint: stock MLX rejects affine quantization
+    # below 2 bits, so a 1-bit entry would pass every metadata check and then fail
+    # to load. See evaluation/records/mac-bonsai27b-1bit-load-failure.json.
+    require(model["quantizationBits"] == 2, "Ternary Bonsai ships as 2-bit packed ternary weights")
     for file in files:
         path, size = file["path"], file["size"]
         require(re.fullmatch(r"[A-Za-z0-9_-][A-Za-z0-9_.-]*", path) is not None, "Unsafe asset path")

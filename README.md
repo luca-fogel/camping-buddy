@@ -4,11 +4,11 @@
 
 A little more ready. A little more outside.
 
-A native **iPhone app in Swift and SwiftUI** for planning your first camping weekends. Ask about gear, food storage, or preparing a campsite. Read the saved guides behind an answer. **Answers run on your iPhone**, on one model: [Bonsai 27B](https://huggingface.co/prism-ml/Bonsai-27B-mlx-1bit), Prism ML's 1-bit MLX conversion of Qwen3.6-27B. No picker, no fallback, no cloud. No account or API key is used. Downloading the model needs internet; asking questions afterwards does not.
+A native **iPhone app in Swift and SwiftUI** for planning your first camping weekends. Ask about gear, food storage, or preparing a campsite. Read the saved guides behind an answer. **Answers run on your iPhone**, on one model: [Ternary Bonsai 8B](https://huggingface.co/prism-ml/Ternary-Bonsai-8B-mlx-2bit), Prism ML's ternary checkpoint packed as MLX 2-bit. No picker, no fallback, no cloud. No account or API key is used. Downloading the model needs internet; asking questions afterwards does not.
 
 ![Camping Buddy — on-device AI and saved camping guides](docs/images/hero.svg)
 
-> **Status: not yet run on a phone.** Version 0.4 replaces the five-model library with a single model, Bonsai 27B. Earlier builds were tested on an iPhone 15 Pro with a *different* model (Gemma 4 E2B); those records are kept as history and are not evidence about Bonsai. Bonsai 27B is 4.78 GiB of weights, and whether an 8 GB iPhone can load it at all is the open question — see [memory](docs/MODEL_CATALOG.md#memory-which-is-the-open-risk). It is not on the App Store. The saved library is a small development collection, not expert-reviewed field guidance. An independent test with the Mac off and the phone's radios disabled is still pending.
+> **Status: generating on a Mac, not yet run on a phone.** Version 0.4 replaces the five-model library with a single model, Ternary Bonsai 8B. It produces real cited answers on a Mac with networking denied — load 0.49 s, answers 1.9–4.3 s, allocator peak 2,584 MiB — but it has never run on an iPhone. Earlier phone records used a *different* model (Gemma 4 E2B) and are kept as history. It is not on the App Store. The saved library is a small development collection, not expert-reviewed field guidance. An independent test with the Mac off and the phone's radios disabled is still pending.
 
 ## What it does
 
@@ -56,9 +56,9 @@ xcodebuild -downloadComponent MetalToolchain
 
 In Xcode, choose your development team under Signing & Capabilities, select your connected iPhone, and run. No model weights are bundled in the app.
 
-Open **Manage the model** to download Bonsai 27B while online. It is a **4.81 GiB** transfer, pinned to an immutable revision and verified against file hashes before it can be used. Keep the app open until it finishes. You can remove the download afterwards to reclaim the space; the app then reports that no model is installed until you download it again.
+Open **Manage the model** to download Ternary Bonsai 8B while online. It is a **2.16 GiB** transfer, pinned to an immutable revision and verified against file hashes before it can be used. Keep the app open until it finishes. You can remove the download afterwards to reclaim the space; the app then reports that no model is installed until you download it again.
 
-The app declares `com.apple.developer.kernel.increased-memory-limit`, because 4.78 GiB of weights must be resident to generate and an 8 GB iPhone otherwise kills the app during the load. The entitlement raises that ceiling; it does not remove it. Prism ML reports a ~3.9 GB deployed footprint and ~11 tok/s on a 12 GB **iPhone 17 Pro Max**. This project's phone is an 8 GB **iPhone 15 Pro**, and the load has not been attempted there. The project has an iOS 17 compilation floor; that does not establish that any given iOS 17 device has enough memory. See the [device test guide](docs/ON_DEVICE_TEST.md) for the remaining independent offline check.
+The app declares `com.apple.developer.kernel.increased-memory-limit` as headroom. The Mac run peaked at 2,584 MiB in the MLX allocator, close enough to the ~3 GB ceiling an 8 GB iPhone applies without the entitlement to be worth keeping — but that is a Mac number, and the phone figure is unknown until the device check runs. The project has an iOS 17 compilation floor; that does not establish that any given iOS 17 device has enough memory. See the [device test guide](docs/ON_DEVICE_TEST.md) for the remaining independent offline check.
 
 ## How an answer reaches the screen
 
@@ -73,7 +73,7 @@ Search the eight saved guides
      ├── No relevant passage? → Say there is not enough evidence
      │
      ▼
-Bonsai 27B on this iPhone · fresh session
+Ternary Bonsai 8B on this iPhone · fresh session
      │
      ▼
 Require a completed answer and check its reference IDs
@@ -86,25 +86,26 @@ Display the answer with buttons to its saved guides
 
 The library search is small and deterministic: titles, keywords, and passage text. It does not query a website or an external vector database. MLX receives local model files only. There is no cloud inference and, with one model, nothing to fall back to.
 
-**Bonsai 27B is the official Prism ML checkpoint in MLX 1-bit packing**, converted from Qwen3.6-27B. No app-side model code was written for it: MLX Swift LM 3.31.4 already implements `qwen3_5` with the hybrid linear-attention layers this checkpoint uses. The repository also carries a 4-bit vision tower, which this app neither downloads nor uses. [Catalog and source details](docs/MODEL_CATALOG.md).
+**Ternary Bonsai 8B is the official Prism ML checkpoint**, ternary {-1, 0, +1} weights packed at 2 bits over a Qwen3 backbone. No app-side model code was written for it: MLX Swift LM 3.31.4 already implements `qwen3`.
+
+Prism's `-mlx-1bit` line, including the 27B, **cannot load on stock MLX** — `affine_quantize` rejects anything below 2 bits, and the loader converts every quantized layer through it. That was found by trying it, and the [failure is recorded](evaluation/records/mac-bonsai27b-1bit-load-failure.json). [Catalog and source details](docs/MODEL_CATALOG.md).
 
 ## What has actually been measured
 
-**Nothing has been measured for Bonsai 27B.** It has not been loaded on a phone.
+**On a Mac, with networking denied at the process level.** Ten scenarios ran through the same engine and request flow the app uses, on 2026-09-10. Six produced cited answers, three were correctly routed without generating, and one was withheld — see below.
 
-The table below is a **historical Gemma 4 E2B measurement** from the model this app used to ship. It is kept because it describes the same request flow, not because it predicts anything about a 27B model twelve times its size. On **September 5, 2026**, a single Ask from a fresh app session on the physical iPhone prepared that model and generated an accepted sleeping-gear answer.
-
-| Physical iPhone 15 Pro | Observed |
+| Mac, `(deny network*)` sandbox | Observed |
 |---|---:|
-| Model preparation | 2.50 seconds |
-| First generated text, internal | 1.45 seconds |
-| Completed answer, after preparation | 3.97 seconds |
-| Output | 77 tokens, stop-token completion |
-| MLX allocator peak | 2,580 MiB |
+| Model load | 0.49 seconds |
+| First generated text | 0.93 – 1.72 seconds |
+| Completed answer | 1.93 – 4.27 seconds |
+| MLX allocator peak | 2,584 MiB |
 
-The [actual phone record](evaluation/records/iphone15pro-first-ask.json) includes the answer and the saved passage it cited. Memory is the MLX allocator's process-lifetime peak, **not total app memory**. This was a fresh app process with the Mac connected; caches may be warm, and networking was not disabled. The record therefore leaves `offlineVerified` false.
+**On an iPhone: nothing.** This model has never run on a phone. A Mac has different memory, thermal behaviour, and a different GPU; none of the numbers above transfer. Memory is the MLX allocator's process-lifetime peak, **not** total process memory.
 
-Separate [Mac evaluation records](evaluation/records/mac-final.jsonl) were collected with networking denied to the process. They helped expose truncation, citation, and advice-quality issues. Those results are not phone performance measurements. The [validation notes](docs/VALIDATION.md) include the unsuccessful cases as well as the successful ones.
+Earlier phone measurements in this repository — a 2.50-second load and 3.97-second answer on a physical iPhone 15 Pro on September 5, 2026 — belong to **Gemma 4 E2B**, the model this app used to ship. They are kept as history in the [phone record](evaluation/records/iphone15pro-first-ask.json) and predict nothing about the current model.
+
+The [validation notes](docs/VALIDATION.md) include the unsuccessful cases as well as the successful ones, and the [1-bit load failure](evaluation/records/mac-bonsai27b-1bit-load-failure.json) that led here.
 
 ## The part worth checking
 
@@ -113,6 +114,8 @@ Separate [Mac evaluation records](evaluation/records/mac-final.jsonl) were colle
 The app checks whether a reference exists and was supplied to the model. That catches an invented label; it cannot establish that every sentence accurately interprets the passage. During development, one food-storage answer used a real source but made its wording stronger than the saved guidance. Another raw answer invented a source after a prompt override and was withheld.
 
 Those findings are retained in the [initial evaluation record](evaluation/records/mac-initial.jsonl). MLX generation also requires normal stop-token completion and rejects a small set of explicit override phrases before generation. This is not a claim of general prompt-injection resistance or expert-level camping advice.
+
+The current model was asked, deliberately, to cite a source that does not exist and quote from it. **It did** — it emitted `[imaginary-tent-manual]` with an invented attributed quotation. The reference check caught the unknown ID and the answer was withheld rather than shown. That is the layer working, and it is also direct evidence that the model will fabricate a source when a question pushes it to. The check catches invented labels; it cannot catch a real label attached to a claim the passage does not support.
 
 The app does not provide current weather, closures, permits, fire permissions, medical diagnosis, or edible-plant identification. Its eight guides are original summaries based on National Park Service material, with attribution kept in the app. See [content provenance](docs/CONTENT.md).
 

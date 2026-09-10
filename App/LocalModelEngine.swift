@@ -197,9 +197,11 @@ actor LocalModelEngine {
         let topP: Float
         let topK: Int
 
-        /// Used only before a descriptor is supplied; a real load always replaces it.
+        /// Used only when no descriptor is supplied. It deliberately does not name a
+        /// catalog model: a metrics line must never attribute an answer to a model
+        /// that was not the one loaded.
         static let fallback = RuntimeProfile(
-            id: "bonsai-27b-1bit", name: "Bonsai (27B)",
+            id: "unidentified-model", name: "Unidentified model",
             prependSystemToUser: false, enableThinking: false,
             temperature: 0, topP: 1, topK: 0)
 

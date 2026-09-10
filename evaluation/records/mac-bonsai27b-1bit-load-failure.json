@@ -1,0 +1,40 @@
+{
+  "recordID": "mac-bonsai27b-1bit-load-failure",
+  "recordedAt": "2026-09-10T11:59:38-04:00",
+  "status": "failed",
+  "phase": "model_load",
+  "deviceClass": "Mac; not an iPhone measurement",
+  "model": {
+    "id": "bonsai-27b-1bit",
+    "repository": "prism-ml/Bonsai-27B-mlx-1bit",
+    "revision": "ef22f239c670078e1507f9769bcaa66657332b96",
+    "quantization": {
+      "bits": 1,
+      "group_size": 128,
+      "mode": "affine (implied; config declares no mode)"
+    }
+  },
+  "assets": {
+    "provisioned": true,
+    "verified": true,
+    "files": 11,
+    "bytes": 5159412937,
+    "tensors": 2180,
+    "note": "All 11 files matched their locked SHA-256 digests. The failure is not an integrity problem."
+  },
+  "runtime": {
+    "mlx-swift": "0.31.4",
+    "mlx-swift-lm": "3.31.4",
+    "networkAccess": "denied via scripts/no-network.sb"
+  },
+  "error": "[quantize] The requested number of bits 1 is not supported. The supported bits are 2, 3, 4, 5, 6 and 8.",
+  "errorSource": "mlx-swift/Source/Cmlx/mlx/mlx/ops.cpp:4590 affine_quantize",
+  "generated": false,
+  "answer": null,
+  "analysis": "Stock MLX cannot represent 1-bit affine quantized layers. MLXLMCommon/Load.swift:41 reads the config.json quantization block and calls quantize(model:) to convert each Linear that has loaded scales into a QuantizedLinear; that conversion runs affine_quantize, which rejects bits < 2 before the real 1-bit weights are ever applied. dequantize accepts bits >= 1, but it is not on this path, so reading only dequantize gives a false positive for support.",
+  "upstreamCheck": "ml-explore/mlx main enforces the same 2..8 bit whitelist as of 2026-09-10, and mlx-swift's newest release is 0.31.6, so no available version bump changes this. Prism ML's card advertises 'custom 1-bit hybrid-attention kernels on Apple MLX (Python, Swift)', which is consistent with the 1-bit path living in their own kernels rather than upstream MLX.",
+  "notEstablished": [
+    "Nothing about Bonsai 27B answer quality, memory use, or speed. The model never loaded.",
+    "Nothing about the iPhone. This failure is architectural and would occur identically there."
+  ]
+}

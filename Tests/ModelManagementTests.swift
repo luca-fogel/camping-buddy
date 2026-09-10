@@ -10,12 +10,13 @@ final class ModelManagementTests: XCTestCase {
         let catalog = try ModelCatalog(data: Data(contentsOf: project.appendingPathComponent("Resources/ModelCatalog/catalog.json")))
         // The app ships exactly one model. Changing that is an editorial
         // decision, not an accident, so it has to be made here too.
-        XCTAssertEqual(catalog.models.map(\.id), ["bonsai-27b-1bit"])
-        XCTAssertEqual(catalog.defaultModelID, "bonsai-27b-1bit")
+        XCTAssertEqual(catalog.models.map(\.id), ["ternary-bonsai-8b-2bit"])
+        XCTAssertEqual(catalog.defaultModelID, "ternary-bonsai-8b-2bit")
         let shipped = try XCTUnwrap(catalog.model(id: catalog.defaultModelID))
         XCTAssertFalse(shipped.isBundled, "No weights ship inside the app bundle.")
-        XCTAssertEqual(shipped.quantizationBits, 1)
-        XCTAssertEqual(shipped.repository, "prism-ml/Bonsai-27B-mlx-1bit")
+        // Below 2 bits stock MLX cannot build the quantized layers at all.
+        XCTAssertGreaterThanOrEqual(shipped.quantizationBits, 2)
+        XCTAssertEqual(shipped.repository, "prism-ml/Ternary-Bonsai-8B-mlx-2bit")
         XCTAssertFalse(shipped.files.isEmpty)
         for model in catalog.models {
             XCTAssertEqual(model.files.reduce(Int64(0)) { $0 + $1.size }, model.totalBytes)

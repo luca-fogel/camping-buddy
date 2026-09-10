@@ -15,7 +15,7 @@ Checked 2026-09-05. Hardware identifiers and device serial numbers are intention
 | Physical device | iPhone 15 Pro, iOS 26.6.1, Developer Mode enabled |
 | Phone readiness | Subsequent USB connection resolved the disk image issue; developer image services are available |
 | Signing / installation | Signed Release build installed successfully on the physical iPhone |
-| Model assets | The pinned Bonsai 27B MLX 1-bit snapshot is the only model; unrelated adapters or models were not substituted |
+| Model assets | The pinned Ternary Bonsai 8B MLX 2-bit snapshot is the only model; unrelated adapters or models were not substituted |
 | Training application | Installed MLX LoRA Studio beta-102.57.7; see STUDIO_COMPATIBILITY.md for the separate read-only compatibility audit |
 
 This records the environment actually used, not a minimum supported-device specification. Developer setup requires working Xcode platform services and access to public dependencies for the initial build. No existing training process was stopped or installed training runtime changed during this prototype's preparation.

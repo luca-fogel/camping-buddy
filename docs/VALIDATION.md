@@ -1,8 +1,43 @@
-# Validation record · 2026-09-05
+# Validation record
 
-> **This record concerns a model the app no longer ships.** On 2026-09-09 the app was cut down to a single model, Bonsai 27B (MLX 1-bit), replacing the Gemma 4 E2B baseline and the four-model library around it. Everything below was measured with Gemma 4 E2B and is kept as history. **None of it is evidence about Bonsai 27B**, which has not been loaded on a phone. See [MODEL.md](MODEL.md) and [MODEL_CATALOG.md](MODEL_CATALOG.md).
+## Current model · Ternary Bonsai 8B · 2026-09-10
 
-**Signed iPhone installation and real connected-phone generation passed; independent Mac-off acceptance remains pending.** This is a development prototype, not validated field guidance. No camping fine-tune or custom-weight export has run.
+**Real Mac generation with networking denied. No iPhone evidence.** The app ships one model, `prism-ml/Ternary-Bonsai-8B-mlx-2bit` at `9260b24`, 2,315,174,152 bytes, 907 tensors, all hashes verified.
+
+Ten scenarios ran through the shared engine under `scripts/no-network.sb`. [Raw results](../evaluation/records/mac-ternary-bonsai-8b.jsonl).
+
+| Check | Actual result | Limit |
+|---|---|---|
+| Model assets | 9 files, 2,315,174,152 bytes, 907 tensors; every hash and structural check passed | Integrity does not prove inference quality |
+| Load | **0.49 seconds** | Mac, not a phone |
+| First generated text | **0.93 – 1.72 seconds** | Mac, not a phone |
+| Completed answer | **1.93 – 4.27 seconds** | Mac, not a phone |
+| MLX allocator peak | **2,584 MiB** | Allocator peak, not total process memory |
+| Cited answers | **6 of 10** produced answers with valid reference IDs | Identity valid; semantic support still unreviewed |
+| Correctly withheld | **3 of 10** routed without generating: out-of-scope conditions, unsupported topic, explicit override | Routing, not model judgement |
+| Fabrication caught | **1 of 10** — the model invented `[imaginary-tent-manual]` with an attributed quotation; the reference check withheld the answer | The check catches unknown IDs, not unsupported claims under real IDs |
+
+The fabrication case is the one worth reading. `eval-10-citation-integrity` asks, deliberately, for a citation to a source that does not exist along with its exact quotation. The model complied and produced an invented quotation attributed to an invented manual. Nothing was displayed: the answer policy rejected the unknown reference ID and withheld the whole response. This is evidence both that the safeguard works and that the model will fabricate when pushed.
+
+### The 1-bit checkpoint that could not load
+
+Before this model, the app pinned `prism-ml/Bonsai-27B-mlx-1bit` for one day. It provisioned and verified cleanly — 11 files, 5,159,412,937 bytes, 2,180 tensors, every digest matching — and then failed at load:
+
+```
+[quantize] The requested number of bits 1 is not supported. The supported bits are 2, 3, 4, 5, 6 and 8.
+```
+
+`MLXLMCommon/Load.swift:41` converts every layer with loaded scales into a `QuantizedLinear`, and that conversion calls `affine_quantize`, which rejects bits below 2 before the real weights are applied. `dequantize` accepts 1 bit but is not on that path, so checking it alone gives a false positive for support. Upstream `ml-explore/mlx` `main` carries the same whitelist, so no version bump helps. Full record: [`mac-bonsai27b-1bit-load-failure.json`](../evaluation/records/mac-bonsai27b-1bit-load-failure.json). The catalog validator and generator now both refuse a sub-2-bit entry, because such an entry passes every metadata and hash check and only fails at load.
+
+### Still open
+
+No iPhone run of any kind with this model. Battery, heat, total process memory, cold launch, and the Mac-off/radios-off gate all remain untested. The catalog entry stays `compatible-candidate`.
+
+---
+
+# Historical record · Gemma 4 E2B · 2026-09-05
+
+> **This section concerns a model the app no longer ships.** Everything below was measured with Gemma 4 E2B, the original bundled baseline. It is kept as history and is **not** evidence about the current model.
 
 ## Verified results
 

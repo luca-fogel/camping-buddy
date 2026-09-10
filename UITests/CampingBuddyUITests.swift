@@ -169,7 +169,7 @@ final class CampingBuddyUITests: XCTestCase {
             let cards = app.descendants(matching: .any)
                 .matching(NSPredicate(format: "identifier BEGINSWITH %@", "modelCard-"))
             XCTAssertEqual(cards.count, 1, "The app offers a single model.")
-            let info = app.buttons["modelInfo-bonsai-27b-1bit"]
+            let info = app.buttons["modelInfo-ternary-bonsai-8b-2bit"]
             XCTAssertTrue(reveal(info, in: app), "The shipped model must be listed with its details.")
             info.tap()
             XCTAssertTrue(app.buttons["modelDetailsDone"].waitForExistence(timeout: 5))
@@ -184,7 +184,7 @@ final class CampingBuddyUITests: XCTestCase {
             manage.tap()
             XCTAssertTrue(app.buttons["modelsDone"].waitForExistence(timeout: 5))
             // Nothing is downloaded in the simulator, so the offer to fetch it must be present.
-            XCTAssertTrue(reveal(app.buttons["downloadModel-bonsai-27b-1bit"], in: app),
+            XCTAssertTrue(reveal(app.buttons["downloadModel-ternary-bonsai-8b-2bit"], in: app),
                           "An uninstalled model must offer its download.")
             app.terminate()
         }

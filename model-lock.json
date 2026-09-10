@@ -1,99 +1,83 @@
 {
   "schema_version": 1,
-  "repository": "prism-ml/Bonsai-27B-mlx-1bit",
-  "revision": "ef22f239c670078e1507f9769bcaa66657332b96",
-  "bundle_path": "Resources/Models/Bonsai-27B-mlx-1bit",
-  "upstream_repository": "Qwen/Qwen3.6-27B",
-  "upstream_revision": "ef22f239c670078e1507f9769bcaa66657332b96",
-  "retrieved_at": "2026-09-09",
+  "repository": "prism-ml/Ternary-Bonsai-8B-mlx-2bit",
+  "revision": "9260b24298e4211e804663e9f519962cf59f34be",
+  "bundle_path": "Resources/Models/Ternary-Bonsai-8B-mlx-2bit",
+  "upstream_repository": "prism-ml/Ternary-Bonsai-8B-unpacked",
+  "upstream_revision": "9260b24298e4211e804663e9f519962cf59f34be",
+  "retrieved_at": "2026-09-10",
   "license": "Apache-2.0",
-  "license_note": "The Prism ML model card and repository declare Apache-2.0, and LICENSE.txt and NOTICE.txt are downloaded with the weights and preserved unaltered. The base model is Qwen/Qwen3.6-27B; upstream_revision repeats the conversion revision because the card names the base model without pinning an upstream commit. No model weights are modified locally.",
-  "runtime_candidate": "MLX Swift LM 3.31.4 LLMModelFactory local directory; qwen3_5 with hybrid GatedDeltaNet layers is implemented there. Physical-device memory fit and output quality require validation.",
+  "license_note": "The Prism ML card and repository declare Apache-2.0, and LICENSE and NOTICE.txt are downloaded with the weights and preserved unaltered. The card names the unpacked checkpoint as the base without pinning an upstream commit, so upstream_revision repeats the conversion revision. No model weights are modified locally.",
+  "runtime_candidate": "MLX Swift LM 3.31.4 LLMModelFactory local directory; qwen3 is implemented there and 2-bit affine quantization is supported by mlx-swift 0.31.4.",
   "required_config": {
-    "model_type": "qwen3_5",
-    "text_config.model_type": "qwen3_5_text",
-    "text_config.num_hidden_layers": 64,
-    "text_config.full_attention_interval": 4,
-    "quantization.bits": 1,
+    "model_type": "qwen3",
+    "num_hidden_layers": 36,
+    "quantization.bits": 2,
     "quantization.group_size": 128
   },
   "files": [
     {
-      "path": "LICENSE.txt",
-      "url": "https://huggingface.co/prism-ml/Bonsai-27B-mlx-1bit/resolve/ef22f239c670078e1507f9769bcaa66657332b96/LICENSE.txt",
+      "path": "LICENSE",
+      "url": "https://huggingface.co/prism-ml/Ternary-Bonsai-8B-mlx-2bit/resolve/9260b24298e4211e804663e9f519962cf59f34be/LICENSE",
       "size": 10174,
       "git_blob_sha1": "66a27ec5ff940d3a9652d2948746ebac4c9d0188",
       "sha256": "69849221bfb90053de2134ef5e6d540287b4b98062326492f1f96f5da685524b"
     },
     {
       "path": "NOTICE.txt",
-      "url": "https://huggingface.co/prism-ml/Bonsai-27B-mlx-1bit/resolve/ef22f239c670078e1507f9769bcaa66657332b96/NOTICE.txt",
-      "size": 411,
-      "git_blob_sha1": "09a2d121096b1e3cc108545c79259ffaa3319807",
-      "sha256": "cef33f95425f9802de78b7b22db0faca84d2216661432a9afcf9620949c21f7e"
+      "url": "https://huggingface.co/prism-ml/Ternary-Bonsai-8B-mlx-2bit/resolve/9260b24298e4211e804663e9f519962cf59f34be/NOTICE.txt",
+      "size": 412,
+      "git_blob_sha1": "bd212b6d0d17df528e2adf9dee3d2b57daab0c7a",
+      "sha256": "7334e66ce48a4ee267ee936c7d2a4f16bd865c766c60ba56b9e04526fae33e0b"
     },
     {
       "path": "README.md",
-      "url": "https://huggingface.co/prism-ml/Bonsai-27B-mlx-1bit/resolve/ef22f239c670078e1507f9769bcaa66657332b96/README.md",
-      "size": 23007,
-      "git_blob_sha1": "1efe9dd38f7eee383fd408a9ebc86648030f24ea",
-      "sha256": "1b48634813a6241310348e371acffd1563f3aff5c350fa2bd79243204871ce2e"
+      "url": "https://huggingface.co/prism-ml/Ternary-Bonsai-8B-mlx-2bit/resolve/9260b24298e4211e804663e9f519962cf59f34be/README.md",
+      "size": 7618,
+      "git_blob_sha1": "fc333716c3f3518eb2cda4745aab5aebb36f207f",
+      "sha256": "32b49bea8f42a081ce0565c11730fa10c3dc0d4e2f538be83e74acaaed75797a"
     },
     {
       "path": "chat_template.jinja",
-      "url": "https://huggingface.co/prism-ml/Bonsai-27B-mlx-1bit/resolve/ef22f239c670078e1507f9769bcaa66657332b96/chat_template.jinja",
-      "size": 7764,
-      "git_blob_sha1": "a8755d827c0a7b614c246c4060dfd58ab352a8ff",
-      "sha256": "e84f32a23fdda27689f868aa4a1a5621f41133e51a48d7f3efcbea2839574259"
+      "url": "https://huggingface.co/prism-ml/Ternary-Bonsai-8B-mlx-2bit/resolve/9260b24298e4211e804663e9f519962cf59f34be/chat_template.jinja",
+      "size": 4063,
+      "git_blob_sha1": "0b04cc1ea9799b1be5432e625ee200a6d4710cde",
+      "sha256": "30a75d10e60b57e2f260420163dd59720dacf9f63b9a8de070d65dd80a7b30f7"
     },
     {
       "path": "config.json",
-      "url": "https://huggingface.co/prism-ml/Bonsai-27B-mlx-1bit/resolve/ef22f239c670078e1507f9769bcaa66657332b96/config.json",
-      "size": 3790,
-      "git_blob_sha1": "97191e17a9aa9d9660be336206307c5ab53ec2e6",
-      "sha256": "cbda96bcc09d6c3333810093d20b394cd15393eee3cd5be22da1f87d1720eee7"
-    },
-    {
-      "path": "merges.txt",
-      "url": "https://huggingface.co/prism-ml/Bonsai-27B-mlx-1bit/resolve/ef22f239c670078e1507f9769bcaa66657332b96/merges.txt",
-      "size": 3353259,
-      "git_blob_sha1": "a494e019ca1502219fd0128658b979e5f05ae8e8",
-      "sha256": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d"
+      "url": "https://huggingface.co/prism-ml/Ternary-Bonsai-8B-mlx-2bit/resolve/9260b24298e4211e804663e9f519962cf59f34be/config.json",
+      "size": 3118,
+      "git_blob_sha1": "67253498188d5f1bdb0c49c8a09de0000de957f2",
+      "sha256": "c9a8bbb4b2b682d0e2d2bf4f537d699e1a569d757b2918c480e82a0c77b060ba"
     },
     {
       "path": "model.safetensors",
-      "url": "https://huggingface.co/prism-ml/Bonsai-27B-mlx-1bit/resolve/ef22f239c670078e1507f9769bcaa66657332b96/model.safetensors",
-      "size": 5129115752,
-      "git_blob_sha1": "e0c70ef7ad3de1a5d878a1e97503dfb6f06b9f9c",
-      "sha256": "7e464b0ae06d249026fb9e81d183cdc0de5b998ea1aa243f9b09a244835643a5"
+      "url": "https://huggingface.co/prism-ml/Ternary-Bonsai-8B-mlx-2bit/resolve/9260b24298e4211e804663e9f519962cf59f34be/model.safetensors",
+      "size": 2303661704,
+      "git_blob_sha1": "8a126398236f6172e5ccb1e13e6f83c9e5c5b0c1",
+      "sha256": "f43270cbae86830b7eecb25bb8a0a0a005a81f180b68868dc39c755cebfff362"
     },
     {
       "path": "model.safetensors.index.json",
-      "url": "https://huggingface.co/prism-ml/Bonsai-27B-mlx-1bit/resolve/ef22f239c670078e1507f9769bcaa66657332b96/model.safetensors.index.json",
-      "size": 185580,
-      "git_blob_sha1": "61ac4232874500d3579dd1bb6486288ea37de964",
-      "sha256": "90cf4963944951462c8b647fdf6a76b91e337148d0a8b2f26c9bfb68ea29b15e"
+      "url": "https://huggingface.co/prism-ml/Ternary-Bonsai-8B-mlx-2bit/resolve/9260b24298e4211e804663e9f519962cf59f34be/model.safetensors.index.json",
+      "size": 64065,
+      "git_blob_sha1": "c1e4d38987627333b46ac8650720327f19161665",
+      "sha256": "178ab2bf39b603d669f730e569045e69886e117a392f4c75cd148f1733add0b4"
     },
     {
       "path": "tokenizer.json",
-      "url": "https://huggingface.co/prism-ml/Bonsai-27B-mlx-1bit/resolve/ef22f239c670078e1507f9769bcaa66657332b96/tokenizer.json",
-      "size": 19989343,
-      "git_blob_sha1": "67741b04f23bfdb46501f748ce27865ec82eccfb",
-      "sha256": "87a7830d63fcf43bf241c3c5242e96e62dd3fdc29224ca26fed8ea333db72de4"
+      "url": "https://huggingface.co/prism-ml/Ternary-Bonsai-8B-mlx-2bit/resolve/9260b24298e4211e804663e9f519962cf59f34be/tokenizer.json",
+      "size": 11422650,
+      "git_blob_sha1": "c7afbed2efcdf019f88ab0572ec29d3bf595dfe2",
+      "sha256": "be75606093db2094d7cd20f3c2f385c212750648bd6ea4fb2bf507a6a4c55506"
     },
     {
       "path": "tokenizer_config.json",
-      "url": "https://huggingface.co/prism-ml/Bonsai-27B-mlx-1bit/resolve/ef22f239c670078e1507f9769bcaa66657332b96/tokenizer_config.json",
-      "size": 1098,
-      "git_blob_sha1": "e15d4cc343e26fd4b2fdc18ffecfc256b90a547b",
-      "sha256": "83febe739ecefd99f984f546dfdc10149cedf293b9ee0291b99894341188b613"
-    },
-    {
-      "path": "vocab.json",
-      "url": "https://huggingface.co/prism-ml/Bonsai-27B-mlx-1bit/resolve/ef22f239c670078e1507f9769bcaa66657332b96/vocab.json",
-      "size": 6722759,
-      "git_blob_sha1": "0aa0ce0658d60ac4a5d609f4eadb0e8e43514176",
-      "sha256": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+      "url": "https://huggingface.co/prism-ml/Ternary-Bonsai-8B-mlx-2bit/resolve/9260b24298e4211e804663e9f519962cf59f34be/tokenizer_config.json",
+      "size": 348,
+      "git_blob_sha1": "be8885e0c6b33e03bf589fdef5eaab60c7f35e1b",
+      "sha256": "579073f506a3f85caed232bb91617cfb93028408d1f43ffaf66f3fc1aee9a9af"
     }
   ]
 }

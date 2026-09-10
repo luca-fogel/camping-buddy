@@ -188,7 +188,7 @@ enum DeviceSmokeTest {
         }
     }
 
-    private static let managerModelID = "bonsai-27b-1bit"
+    private static let managerModelID = "ternary-bonsai-8b-2bit"
 
     private struct ModelRun: Encodable {
         let requestedModelID: String
@@ -242,7 +242,7 @@ enum DeviceSmokeTest {
         let testContext = "Development smoke test launched from a connected Mac. Networking is required for the model download and was not disabled. The app does not measure Mac connection or radio state. This is not the Mac-off, cold-launch offline acceptance test."
         let offlineVerified = false
         let connectivityChangedByTest = false
-        let memoryMeasurement = "Metrics report the MLX allocator's process-lifetime peak, not total app RSS. Bonsai 27B needs the increased memory limit entitlement; a jetsam kill during load will end this check without a report."
+        let memoryMeasurement = "Metrics report the MLX allocator's process-lifetime peak, not total app RSS. The Mac evaluation peaked at 2,584 MiB for this model; the phone figure is unknown until this check runs."
 
         @MainActor init() {
             downloadedModelID = DeviceSmokeTest.managerModelID

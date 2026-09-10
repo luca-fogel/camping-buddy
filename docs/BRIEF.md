@@ -10,11 +10,11 @@ Excluded from this milestone: accounts, cloud inference, voice, payments, App St
 
 ## Model choice and proof required
 
-The app ships exactly one model: **Bonsai 27B, Prism ML's MLX 1-bit conversion of Qwen3.6-27B**, loaded with MLX Swift LM 3.31.4 as text only. It is downloaded on the phone; nothing is bundled. There is no picker, no fallback, and no substitution — if it is not downloaded or will not load, the app says so.
+The app ships exactly one model: **Ternary Bonsai 8B, Prism ML's ternary checkpoint packed as MLX 2-bit**, loaded with MLX Swift LM 3.31.4 as text only. It is downloaded on the phone; nothing is bundled. There is no picker, no fallback, and no substitution — if it is not downloaded or will not load, the app says so.
 
-*Superseded on 2026-09-09.* The first implementation used Gemma 4 E2B IT in ordinary MLX 4-bit, which was measured on the phone; a five-model library briefly followed it. Those records are retained in [VALIDATION.md](VALIDATION.md) and describe models the app no longer offers.
+*History.* The first implementation used Gemma 4 E2B IT in ordinary MLX 4-bit and was measured on the phone; a five-model library briefly followed; on 2026-09-09 the app was cut to a single model. Bonsai 27B 1-bit was that single model for one day and **could not load** — stock MLX has no sub-2-bit affine quantization — so the 2-bit ternary checkpoint replaced it on 2026-09-10. Those records are retained in [VALIDATION.md](VALIDATION.md) and describe models the app no longer offers.
 
-Bonsai 27B is a 4.78 GiB weight file at ~1.125 bits per weight. Its name is not a phone RAM estimate, and neither is its download size. The publisher targets a 12 GB iPhone 17 Pro Max; this project's phone is an 8 GB iPhone 15 Pro, so the app declares the increased memory limit entitlement and the load remains unproven. Use actual phone memory, response, and thermal measurements to decide suitability. [Model card](https://huggingface.co/prism-ml/Bonsai-27B-mlx-1bit), [base model](https://huggingface.co/Qwen/Qwen3.6-27B).
+Ternary Bonsai 8B is a 2.16 GiB download. Its parameter count is not a phone RAM estimate, and neither is its download size: the Mac evaluation peaked at 2,584 MiB in the MLX allocator, which is a Mac number. Use actual phone memory, response, and thermal measurements to decide suitability. [Model card](https://huggingface.co/prism-ml/Ternary-Bonsai-8B-mlx-2bit).
 
 ## Acceptance gate
 
