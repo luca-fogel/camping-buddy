@@ -296,7 +296,14 @@ enum DeviceSmokeTest {
             report.detail = "Loading the shipped model through the same model manager as the visible app."
             writeManagerReport(model: model, report: &report)
             try await performBounded(stage: "the downloaded model to load", onCancel: { model.stop() }) {
-                try await model.selectModel(id: managerModelID)
+                if library.selectedID != managerModelID {
+                    try await library.commitSelection(managerModelID)
+                }
+                try await model.ensureSelectedModelLoaded()
+                guard model.activeDescriptor?.id == managerModelID,
+                      library.selectedID == managerModelID else {
+                    throw CheckFailure.failed("ensureSelectedModelLoaded did not activate the shipped model.")
+                }
             }
             report.phase = "generating_with_downloaded_model"
             writeManagerReport(model: model, report: &report)

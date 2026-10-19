@@ -66,7 +66,7 @@
       "compatibilityNote": "Ternary {-1,0,+1} weights packed at 2 bits with group size 128, over a Qwen3 backbone; 36 layers, text only. Stock MLX supports 2-bit affine quantization, unlike Prism's 1-bit line, which needs custom kernels the pinned runtime does not have. This exact app/device combination still requires a generation test.",
       "chatOptions": {
         "enableThinking": false,
-        "temperature": 0.7,
+        "temperature": 0.0,
         "topP": 0.95,
         "topK": 40,
         "systemPromptMode": "system"

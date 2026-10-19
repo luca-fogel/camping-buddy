@@ -50,7 +50,9 @@ final class ChatModel: ObservableObject {
     }
 
     var modelStateLabel: String {
-        if isSwitchingModel { return "Switching models" }
+        if isSwitchingModel {
+            return modelLibrary.catalog.models.count <= 1 ? "Loading model" : "Switching models"
+        }
         if isGenerating { return "Answering on device" }
         if isLoading || isPreparingQuestion { return "Preparing your model" }
         if isReady { return "Ready on device" }
@@ -115,8 +117,11 @@ final class ChatModel: ObservableObject {
         }
     }
 
-    /// The selection is persisted only after the replacement is usable. The
-    /// previous selection stays protected until success or a rollback reload.
+    /// Loads the catalog selection (or switches when the catalog has more than
+    /// one entry). The selection is persisted only after the replacement is
+    /// usable; the previous selection stays protected until success or rollback.
+    /// The shipping catalog is a single model; multi-entry rollback remains so
+    /// device checks and coordinator tests can still exercise recovery.
     func selectModel(id: String) async throws {
         guard !isSwitchingModel else { throw SelectionFailure.switchInProgress }
         #if targetEnvironment(simulator)
@@ -134,6 +139,13 @@ final class ChatModel: ObservableObject {
         #endif
     }
 
+    /// Preferred entry point when the app has a single shipped model: load the
+    /// persisted selection without implying a multi-model picker.
+    func ensureSelectedModelLoaded() async throws {
+        await modelLibrary.prepare()
+        try await selectModel(id: modelLibrary.selectedID)
+    }
+
     private func performSelection(id: String) async throws {
         await modelLibrary.prepare()
         try Task.checkCancellation()
@@ -148,6 +160,7 @@ final class ChatModel: ObservableObject {
         let previousDescriptor = activeDescriptor
         let previousDirectory = activeDirectory
         let previousID = previousDescriptor?.id
+        let replacing = previousID != nil && previousID != id
         let directory = try await modelDirectory(for: descriptor)
         if previousID != id { try await modelLibrary.protect(id) }
         do {
@@ -162,7 +175,9 @@ final class ChatModel: ObservableObject {
         isReady = false
         isLoading = true
         defer { isLoading = false }
-        status = "Loading \(descriptor.name) from this device…"
+        status = replacing
+            ? "Switching to \(descriptor.name)…"
+            : "Loading \(descriptor.name) from this device…"
         do {
             let seconds = try await engine.load(directory: directory, model: descriptor)
             try Task.checkCancellation()
@@ -172,6 +187,8 @@ final class ChatModel: ObservableObject {
             activeDescriptor = descriptor
             activeDirectory = directory
             isReady = true
+            // Always clear chat after a successful load/switch so answers cannot
+            // be attributed to a model that is no longer resident.
             entries.removeAll()
             status = "\(descriptor.name) ready · on this device"
             metrics = loadMetrics(descriptor: descriptor, seconds: seconds)
@@ -192,11 +209,13 @@ final class ChatModel: ObservableObject {
                     activeDirectory = previousDirectory
                     isReady = true
                     metrics = loadMetrics(descriptor: previousDescriptor, seconds: seconds)
-                    status = "Could not switch models. \(previousDescriptor.name) is ready again."
+                    status = replacing
+                        ? "Could not switch models. \(previousDescriptor.name) is ready again."
+                        : "\(previousDescriptor.name) is ready again."
                 } catch {
                     try? await engine.unload()
                     await modelLibrary.unprotect(previousDescriptor.id)
-                    status = "Model switch failed, and the previous model could not reload. Ask again to retry. \(error.localizedDescription)"
+                    status = "Model load failed, and the previous model could not reload. Ask again to retry. \(error.localizedDescription)"
                 }
             } else {
                 status = "Model unavailable: \(originalError.localizedDescription)"
@@ -300,9 +319,10 @@ final class ChatModel: ObservableObject {
             return
         }
         isGenerating = true
-        entries.append(ChatEntry(question: question, answer: "Reading the local references…", sources: passages,
-                                 modelID: descriptor.id, modelName: descriptor.name))
-        let id = entries.last!.id
+        let entry = ChatEntry(question: question, answer: "Reading the local references…", sources: passages,
+                              modelID: descriptor.id, modelName: descriptor.name)
+        let id = entry.id
+        entries.append(entry)
         generationTask = Task {
             defer { isGenerating = false; generationTask = nil }
             do {
@@ -343,8 +363,13 @@ final class ChatModel: ObservableObject {
         generationTask?.cancel()
         loadTask?.cancel()
         selectionTask?.cancel()
-        if isSwitchingModel { status = "Stopping the switch and restoring the previous model…" }
-        else if isLoading { status = "Stopping model load…" }
+        if isSwitchingModel {
+            status = modelLibrary.catalog.models.count <= 1
+                ? "Stopping model load…"
+                : "Stopping the switch and restoring the previous model…"
+        } else if isLoading {
+            status = "Stopping model load…"
+        }
     }
 
     /// Development checks can join cancellation, including rollback, before

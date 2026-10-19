@@ -31,7 +31,7 @@ Before this model, the app pinned `prism-ml/Bonsai-27B-mlx-1bit` for one day. It
 
 ### Still open
 
-No iPhone run of any kind with this model. Battery, heat, total process memory, cold launch, and the Mac-off/radios-off gate all remain untested. The catalog entry stays `compatible-candidate`.
+No iPhone run of any kind with this model. Battery, heat, total process memory, cold launch, and the Mac-off/radios-off gate all remain untested. The catalog entry stays `compatible-candidate`. Shipping `chatOptions.temperature` is **0.0** (aligned with the measured Mac protocol); do not raise it without re-running the scenario suite. The physical gate placeholder is [`iphone-ternary-bonsai-8b-pending.json`](../evaluation/records/iphone-ternary-bonsai-8b-pending.json).
 
 ---
 

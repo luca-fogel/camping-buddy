@@ -18,12 +18,12 @@ Update this file as evidence arrives; do not mark physical-device gates from a M
 - [x] Connect physical iPhone by USB; developer disk image services ready; signed Release build verifies.
 - [x] Install signed build on physical iPhone 15 Pro, iOS 26.6.1.
 - [x] Run real Mac inference with the current model, networking denied, over ten scenarios. *(Ternary Bonsai 8B, 2026-09-10: six cited answers, three correctly routed, one fabricated source withheld.)*
-- [ ] Load Ternary Bonsai 8B on the physical iPhone; a jetsam kill is a possible outcome and counts as a recorded result.
+- [ ] Load Ternary Bonsai 8B on the physical iPhone; a jetsam kill is a possible outcome and counts as a recorded result. *(Pending record: [evaluation/records/iphone-ternary-bonsai-8b-pending.json](../evaluation/records/iphone-ternary-bonsai-8b-pending.json).)*
 - [ ] Generate a real, cited answer on the connected physical iPhone; record load/response/allocator measurements.
 - [ ] Cold launch and answer with Wi-Fi/cellular off and Mac off.
 - [ ] Record device memory, load/first-output/total-answer delay, and failures.
 
-Installation completed on 2026-09-05 and a real cited answer was generated on the phone — **with Gemma 4 E2B**, which the app no longer ships. Ternary Bonsai 8B generates on a Mac but has never run on a phone, so the device generation gate is open. Mac-off/radios-off acceptance remains pending behind it.
+Installation completed on 2026-09-05 and a real cited answer was generated on the phone — **with Gemma 4 E2B**, which the app no longer ships. Ternary Bonsai 8B generates on a Mac but has never run on a phone, so the device generation gate is open. Mac-off/radios-off acceptance remains pending behind it. Replace the pending iPhone record when that gate runs; do not invent values.
 
 ## 2. Evidence and data
 

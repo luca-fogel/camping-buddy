@@ -1,6 +1,6 @@
 Camping Buddy prototype — third-party notices
 
-Original app source is new. The local tokenizer protocol adapter follows the MLX Swift LM integration example (MIT). The downloaded model's attribution and pinned source links are available under Manage the model. Reference metadata is available with each local passage.
+Original app source is licensed under the GNU General Public License v3.0 (see LICENSE at the repository root). The local tokenizer protocol adapter follows the MLX Swift LM integration example (MIT). The downloaded model's attribution and pinned source links are available under Manage the model. Reference metadata is available with each local passage.
 
 
 ========================================================================

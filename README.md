@@ -1,6 +1,6 @@
 # Camping Buddy
 
-[![CI](https://github.com/foggylulu/camping-buddy/actions/workflows/ci.yml/badge.svg)](https://github.com/foggylulu/camping-buddy/actions/workflows/ci.yml)
+[![CI](https://github.com/luca-fogel/camping-buddy/actions/workflows/ci.yml/badge.svg)](https://github.com/luca-fogel/camping-buddy/actions/workflows/ci.yml)
 
 A little more ready. A little more outside.
 
@@ -39,7 +39,7 @@ These are actual iPhone simulator captures of the SwiftUI app. They are not gene
 ## Try the interface
 
 ```sh
-git clone https://github.com/foggylulu/camping-buddy.git
+git clone https://github.com/luca-fogel/camping-buddy.git
 cd camping-buddy
 open CampingBuddy.xcodeproj
 ```
@@ -141,7 +141,7 @@ xcodebuild -project CampingBuddy.xcodeproj -scheme CampingBuddy \
 
 The deterministic [model-loading check](DeveloperChecks/ChatModelFlowCheck.swift) compiles the actual chat coordinator against controlled dependencies. It covers cancellation, failed loads, failed selection commits, restoring the previous model, and persisted selection. Run `zsh scripts/check_chat_model_flow.sh`; these controlled responses are not inference evidence.
 
-The [connected-device check](docs/DEVICE_DEVELOPMENT_CHECK.md) documents the opt-in in-app test that produced the earlier phone record. It has not been run against Bonsai 27B. Physical inference is not run by CI. Battery, heat, total memory, wider device support, and field reliability still need testing.
+The [connected-device check](docs/DEVICE_DEVELOPMENT_CHECK.md) documents the opt-in in-app test that produced the earlier phone record. It has not been run against Ternary Bonsai 8B. Physical inference is not run by CI. Battery, heat, total memory, wider device support, and field reliability still need testing. Fill [evaluation/records/iphone-ternary-bonsai-8b-pending.json](evaluation/records/iphone-ternary-bonsai-8b-pending.json) when that gate runs.
 
 ## Project map
 
@@ -153,7 +153,7 @@ UITests/                     Interface checks and optional phone test
 Resources/ReferenceLibrary/  Eight original, attributed preparation guides
 Resources/ModelCatalog/      The pinned download manifest: sizes, hashes, and provenance
 Resources/Acknowledgments/  Third-party notices
-Resources/Entitlements/      The increased memory limit the 27B weights require
+Resources/Entitlements/      Increased memory limit retained as headroom for ~2.6 GiB allocator use
 Resources/Models/            Mac evaluation weights; ignored by Git
 scripts/                     Provisioning, verification, and repository checks
 evaluation/records/          Actual development runs, including failed cases
@@ -164,8 +164,8 @@ docs/                        Model, content, validation, and device notes
 
 ## Related work
 
-[**solvr.ai**](https://github.com/foggylulu/solvr-ai) — the on-device maths tutor that inspired this repository's presentation.
+[**solvr.ai**](https://github.com/luca-fogel/solvr-ai) — the on-device maths tutor that inspired this repository's presentation.
 
 ## Licenses and acknowledgments
 
-The app's original source does not yet have a redistribution license. Publishing this repository does not change the licenses of its dependencies or model. Their notices are retained in [Resources/Acknowledgments](Resources/Acknowledgments/ThirdPartyNotices.txt); model provenance and the upstream Apache 2.0 declaration are documented in [docs/MODEL.md](docs/MODEL.md). Model weights are downloaded separately and are not hosted in this repository.
+Original app source is licensed under the [GNU General Public License v3.0](LICENSE). Publishing this repository does not change the licenses of its dependencies or model. Their notices are retained in [Resources/Acknowledgments](Resources/Acknowledgments/ThirdPartyNotices.txt); model provenance and the upstream Apache 2.0 declaration are documented in [docs/MODEL.md](docs/MODEL.md). Model weights are downloaded separately and are not hosted in this repository.

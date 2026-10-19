@@ -2,10 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<!-- Bonsai 27B is a ~4.8 GiB download that must be resident to generate.
-	     Without this the app is jetsammed while loading the weights. Apple
-	     grants the entitlement per app; it raises the ceiling but does not
-	     remove it, and an 8 GB iPhone may still refuse the load. -->
+	<!-- Ternary Bonsai 8B peaked ~2.6 GiB MLX allocator on Mac. Retained as
+	     headroom near the ~3 GiB jetsam ceiling on 8 GB iPhones; phone peak
+	     is still unmeasured. The entitlement raises the ceiling but does not
+	     remove it. -->
 	<key>com.apple.developer.kernel.increased-memory-limit</key>
 	<true/>
 </dict>
